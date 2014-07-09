@@ -18,11 +18,17 @@ Alright, split it into halves.
 
 
 VUV1FV51015: 1sthalf.fa 00:47:22
+
 VUVRHDX9014: 3rdquarter.fa failed
+
 VUW6E20K01R: 7thokta.fa failed
+
 VUWK34XN014: 15-16.fa failed
+
 VUWVV687014: 31_32.fa failed
+
 VUX3ZDXW014: 63_64.fa 00:11:52
+
 
 The fact that the middle ones failed before the first one suggest it might not be a problem with CPU time limitation. What else can it be then?
 
