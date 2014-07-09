@@ -30,8 +30,44 @@ VUWVV687014: 31_32.fa failed
 VUX3ZDXW014: 63_64.fa 00:11:52
 
 
-The fact that the middle ones failed before the first one suggest it might not be a problem with CPU time limitation. After a while the last one failed as well. Cannot find other info on this error. Alright! Download the whole database!
+The fact that the middle ones failed before the first one suggest it might not be a problem with CPU time limitation. After a while the last one failed as well, followed by the first one. Cannot find other info on this error. Alright! Download the whole database!
 
+By reading the [BLAST database documentation](ftp://ftp.ncbi.nlm.nih.gov/blast/documents/blastdb.html), it seems like that I should be able to download the database by using a perl script called update_blastdb.pl. But you need to install perl-doc. 
+
+Helpful options of update_blastdb.pl
+
+	--showall Show all available pre-formatted BLAST databases (default: false). The output of this option
+         lists the database names which should be used when requesting downloads or updates using this
+         script. 
+   However there is no option to specify which database to download... Also this option failed with error message:
+         
+    $ update_blastdb.pl --showall
+	  Connected to NCBI
+	  Use of uninitialized value $retval[0] in concatenation (.) or string at /home/heather/bin/update_blastdb.pl line 134.
+	
+Other opitons:
+		         
+	--passive
+         Use passive FTP, useful when behind a firewall (default: false).
+         
+	--decompress
+         Downloads, decompresses the archives in the current working directory, and deletes the
+         downloaded archive to save disk space, while preserving the archive checksum files (default:
+         false).  Note: Using this option may require more computing resources than using your system's
+         native decompression tool(s).
+
+Did not work. Download the database directly from ftp. Target:
+refseq_rna.*tar.gz     | NCBI Transcript reference sequences
+
+	$ wget ftp://ftp.ncbi.nih.gov/blast/db/refseq_rna.03.tar.gz
+	
+untar, blast:
+
+	$ tblastx -db refseq_rna -query nohit_FFtRosa.0708.tblastx.xml.fa -num_threads 12 -outfmt 5 -evalue 1e-10 -out FFtref.0708.tblastx.xml &
+	[1] 39530
+	$ BLAST Database error: Could not find volume or alias file (refseq_rna.00) referenced in alias file (/home/heather/Projects/Ficus/Transcriptome/blast/refseq_rna).
+	
+I should download 00, 01 and 02 as well? I thought it was only numbering and 03 is newest version!
 
 
 
