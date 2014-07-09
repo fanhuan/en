@@ -67,7 +67,10 @@ untar, blast:
 	[1] 39530
 	$ BLAST Database error: Could not find volume or alias file (refseq_rna.00) referenced in alias file (/home/heather/Projects/Ficus/Transcriptome/blast/refseq_rna).
 	
-I should download 00, 01 and 02 as well? I thought it was only numbering and 03 is newest version!
+I should download 00, 01 and 02 as well? I thought it was only numbering and 03 is newest version! 
+Yes. download refseq_rna.*.tar.gz... Maybe there is a limitation on size of one database. Lucking the refseq_rna has only 4 parts. Some of the database has >40!
+
+	$ tblastx -db refseq_rna -query nohit_FFtRosa.0708.tblastx.xml.fa -num_threads 12 -outfmt 5 -evalue 1e-10 -out FFtref.0708.tblastx.xml &
 
 
 
