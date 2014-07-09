@@ -30,7 +30,9 @@ VUWVV687014: 31_32.fa failed
 VUX3ZDXW014: 63_64.fa 00:11:52
 
 
-The fact that the middle ones failed before the first one suggest it might not be a problem with CPU time limitation. What else can it be then?
+The fact that the middle ones failed before the first one suggest it might not be a problem with CPU time limitation. After a while the last one failed as well. Cannot find other info on this error. Alright! Download the whole database!
+
+
 
 
 
