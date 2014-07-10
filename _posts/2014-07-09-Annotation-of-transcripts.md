@@ -74,7 +74,7 @@ Yes. download refseq_rna.*.tar.gz... Maybe there is a limitation on size of one 
 	
 ######Another day goes by#############################
 20140710
-
+tblastx still running... It is much slower that blastx.
 
 
 
