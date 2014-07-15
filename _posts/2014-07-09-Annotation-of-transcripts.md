@@ -72,12 +72,64 @@ Yes. download refseq_rna.*.tar.gz... Maybe there is a limitation on size of one 
 
 	$ tblastx -db refseq_rna -query nohit_FFtRosa.0708.tblastx.xml.fa -num_threads 12 -outfmt 5 -evalue 1e-10 -out FFtref.0708.tblastx.xml &
 	
-######Another day goes by#############################
+######Another day goes by
+
 20140710
 
 tblastx still running... It is much slower than blastx.
+It's been a day and I just realize that it's only finished 20% of the transcripts. And I just noticed that we have 32 processors on the server. I decide to kill the job and start again using 30 cores. 
 
+	$ nohup tblastx -db refseq_rna -query nohit_FFtRosa.0708.tblastx.xml.fa -num_threads 30 -outfmt 5 -evalue 1e-10 -out FFtref.0710.tblastx.xml &
+	[1] 46225
+	
+I killed it because I found that I do not need to start from the start. I just need to finish blasting the rest of the transcripts.
 
+	$ tail -112218 nohit_FFtRosa.0708.tblastx.xml.fa > nohit_FFtRosa.0710.tblastx.xml.fa 
+	$ head nohit_FFtRosa.0710.tblastx.xml.fa 
+	>comp108745_c0_seq3 len=239 path=[1:0-168 1894:169-238]
+	GGAAAGAGCGAAAGTCTGGGATTTTCATGGCGGAGACTGGAACGAAGAGGAAGCGAATGG
+	GGGAGAAAGGAGGAGCAATTTTCCCGAAAACGAAATCAAATTGGCCAGCGATCAAACCAA
+	AACAAAATCTCCACATCACTCGTCTCAAAGATACCGATCTTTTCACGGTGTGAATCTGAA
+	ATACCCCCCCATATTTCTCTCCTCTGTAATTGGCTTGCTTTTTTTTTTTTAATAAATAT
+	$ nohup tblastx -db refseq_rna -query nohit_FFtRosa.0710.tblastx.xml.fa -num_threads 30 -outfmt 5 -evalue 1e-10 -out FFtref.0710.tblastx.xml &
+	[1] 46737
 
+OK. This is still going to take 1.5 days. Prepare for the following analysis.
+Depending on want information the GO analysis needs, we need to parse the blasting to refRNA different. Now only the description is kept. We want the gene ID apparently. But do we want the description as well? How do we have a geneID2GO map? 
+gi|112984375|ref|NM_001043694.1| Bombyx mori ribosomal protein L14 (RpL14), mRNA
+Which one to keep and how to tranlate it into GO map?
 
+We also need the length Data.
 
+	
+######Another day goes by
+
+20140711
+1. Which ID to keep, the ginumber one or the species initial number one? How to link them to GO terms?
+	format of the blastRecord.alignments[0].title
+				
+	gi|426369154|ref|XR_175802.1| PREDICTED: Gorilla gorilla gorilla uncharacterized LOC101147172 (LOC101147172), misc_RNA
+
+Rstudio:http://210.72.93.47:8787/
+
+All need to specify a certain species. Got interested in [the XSLT solution](https://www.biostars.org/p/1226/).
+
+>Sidenote:
+XSLT(Extensible Stylesheet Language Transformations)  
+[A tutorial](http://www.w3schools.com/xsl/)
+CSS = Style Sheets for HTML
+
+$ git clone git://git.gnome.org/libxslt
+
+$ xsltproc --novalid stylesheet.xsl "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=NM_030621&rettype=xml"
+xsltproc: relocation error: xsltproc: symbol xsltMaxVars, version LIBXML2_1.0.24 not defined in file libxslt.so.1 with link time reference
+
+Cannot fix this error. 
+
+######Another week goes by
+
+20140715
+
+The server is down again. Got some advice from advisor. Need to balance between false positives and false negatives. I was using tblastx in order to annotate as many transcripts as possible while hoping to verify the hits by reciprocal best hits (RBH) later. However [reciprocal BLAST does not fully take into account situtations where the gene history is complicated with gene duplications](http://www.flyrnai.org/RNAi_orthology.html). While everybody is using blastx. Trying to figure out what it the best way to annatate. Ran into [this paper](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0101850). Seems like I have to stick to blast since my reference is so far away.
+
+Too lasy to write my own RBH scripts. Found [this](http://ged.msu.edu/angus/tutorials/reciprocal-blast.html) probably written by Titus. 
