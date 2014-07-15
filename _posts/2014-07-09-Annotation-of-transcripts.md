@@ -132,4 +132,4 @@ Cannot fix this error.
 
 The server is down again. Got some advice from advisor. Need to balance between false positives and false negatives. I was using tblastx in order to annotate as many transcripts as possible while hoping to verify the hits by reciprocal best hits (RBH) later. However [reciprocal BLAST does not fully take into account situtations where the gene history is complicated with gene duplications](http://www.flyrnai.org/RNAi_orthology.html). While everybody is using blastx. Trying to figure out what it the best way to annatate. Ran into [this paper](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0101850). Seems like I have to stick to blast since my reference is so far away.
 
-Too lasy to write my own RBH scripts. Found [this](http://ged.msu.edu/angus/tutorials/reciprocal-blast.html) probably written by Titus. 
+Got some inspiration from [this](http://ged.msu.edu/angus/tutorials/reciprocal-blast.html), probably written by Titus. Modify the parseXML.py to parse2XML.py
