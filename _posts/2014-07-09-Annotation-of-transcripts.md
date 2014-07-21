@@ -135,3 +135,14 @@ The server is down again. Got some advice from advisor. Need to balance between 
 Got some inspiration from [this](http://ged.msu.edu/angus/tutorials/reciprocal-blast.html), probably written by Titus. Modify the parseXML.py to parse2XML.py
 
 Emm. Maybe RBH is too strict? I decide to recess to writing for today. Maybe I should do half day writing and half day analysis.
+
+######Another day goes by
+
+20140716
+
+Decided that it is better to write down the analysis that has been down to decide what other analysis are needed.
+R asked me to install blast2go. It's a GUI. Could not load sequence files.
+######Another day goes by
+20140717
+
+Keep writing the methods part for the differential analysis.
