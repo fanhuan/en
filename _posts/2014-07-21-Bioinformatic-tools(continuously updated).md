@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Annotate my transcripts
+title:  Bioinformatic tools (continuously updated)
 categories: [notes]
 tags: [Open lab note - Bioinformatic tools]
 ---
