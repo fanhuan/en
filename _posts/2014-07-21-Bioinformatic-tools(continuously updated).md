@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Bioinformatic tools (continuously updated)
+title:  Bioinformatic tools
 categories: [notes]
 tags: [Open lab note - Bioinformatic tools]
 ---
