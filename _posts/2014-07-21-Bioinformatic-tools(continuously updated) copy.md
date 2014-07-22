@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Bioinformatic tools
+title:  Bioinformatic tools (continuously updated)
 categories: [notes]
 tags: [Open lab note - Bioinformatic tools]
 ---
@@ -17,7 +17,7 @@ Test dataset: Eight Crohn’s disease substudies as independent training and tes
 
 http://code.google.com/p/sgwe-project/
 
-#RADSeq-Phylogeny: 
+#RAD: 
 
 http://mbe.oxfordjournals.org/content/31/5/1272.full.pdf+html
 
@@ -27,3 +27,5 @@ http://mbe.oxfordjournals.org/content/31/5/1272.full.pdf+html
 
 #RNA-seq:
 ####[PRADA: pipeline for RNA sequencing data analysis](http://bioinformatics.oxfordjournals.org/content/30/15/2224.abstract.html?etoc)
+
+####[GOssTo: a stand-alone application and a web tool for calculating semantic similarities on the Gene Ontology](http://bioinformatics.oxfordjournals.org/content/30/15/2235.abstract.html?etoc)(Measure the similarity of GO terms in two samples)
