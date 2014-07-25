@@ -2,7 +2,7 @@
 layout: post
 title:  How to keep your scripts sync on multiple device (using git)
 categories: [notes]
-tags: [Open lab note - Bioinformatic tools]
+tags: [Open lab note, Bioinformatic tools]
 ---
 Usually I wrote python script on my local desktop and put it on a server for usage. Sometimes I begin to do stupid things such as edit the script on the server directly thus lose tract of things. I decided to be more organised in terms of my scripts by using git.
 
