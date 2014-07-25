@@ -1,5 +1,5 @@
 ---
-title: Madtown Nuts
+title: Ecology, Statistics, R and Fun
 layout: page
 ---
 

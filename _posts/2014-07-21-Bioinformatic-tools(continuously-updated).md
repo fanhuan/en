@@ -2,7 +2,7 @@
 layout: post
 title:  Bioinformatic tools (continuously updated)
 categories: [notes]
-tags: [Open lab note - Bioinformatic tools]
+tags: [Open lab note, Bioinformatic tools]
 ---
 This is a continously updated note about newly published bioinformatic tools. More will be said after trying to use them. Any comments on any of the topics or tools are appreciated.
 
