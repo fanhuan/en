@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  How to keep your scripts sync on multiple device (using git)
+title:  KEGG Pathway Analysis via Cytoscape
 categories: [notes]
 tags: [Open lab note - KEGG Pathway]
 ---
