@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  How to keep your scripts sync on multiple device (using git)
+title:  How to get to know a gene
 categories: [notes]
-tags: [Open lab note - Molecular Biology]
+tags: [Open lab note, Molecular Biology]
 ---
 While annotating my transcripts, I understand how little I know about molecular biology in plants. As everything was studied in Arabidopsis (note that I do not mean everything in Arabidopsis is studied...), the best way to meet a gene is still understanding what it does in Arabidopsis.
 
