@@ -1,33 +1,16 @@
 ---
 layout: post
-title:  Blast ouput in xml format
+title:  zcat vs gzcat
 categories: [notes]
-tags: [Open lab note - Ficus RNA-seq]
+tags: [Open lab note - OS X]
 ---
+Usually we use zcat to check gz files. While today when I was trying to do the same, something strange happend:
 
+	Huan$ zcat /Users/Huan/Documents/filename.gz | head
+	zcat: can't stat: /Users/Huan/Documents/filename.gz (/Users/Huan/Documents/filename.gz.Z): No such file or directory
 
-Ierror: failed to push some refs to 'https://github.com/fanhuan/script'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-Huans-MacBook-Pro:script Huan$ git pull
-remote: Counting objects: 16, done.
-remote: Total 16 (delta 2), reused 2 (delta 2), pack-reused 14
-Unpacking objects: 100% (16/16), done.
-From https://github.com/fanhuan/script
-   20639e2..1813ce5  master     -> origin/master
-Auto-merging simRadAlignment.py
-CONFLICT (add/add): Merge conflict in simRadAlignment.py
-Auto-merging shared_diversity.py
-CONFLICT (add/add): Merge conflict in shared_diversity.py
-Removing prune_newick
-Auto-merging filter_kmer_from_pattern.py
-CONFLICT (content): Merge conflict in filter_kmer_from_pattern.py
-Removing 1simulation.R
-Automatic merge failed; fix conflicts and then commit the result.
+Of course there is a filename.gz in my Documents directory. However, there is no filename.gz.Z there. But why it is requesting something like that? 
 
-http://serverfault.com/questions/570024/zcat-gzcat-works-in-linux-not-on-osx-general-linux-osx-compatibility
-Huans-MacBook-Pro:CleanData Huan$ zcat /Users/Huan/Documents/W2_1_clean.fq.gz | head
-zcat: can't stat: /Users/Huan/Documents/W2_1_clean.fq.gz (/Users/Huan/Documents/W2_1_clean.fq.gz.Z): No such file or directory
+It turns out that there's some discripency between linux and osx (like the carrige returns or anything else!) and that could mess things up. According to [this post](http://serverfault.com/questions/570024/zcat-gzcat-works-in-linux-not-on-osx-general-linux-osx-compatibility]), "In osx, zcat seems to automatically append .Z to the file name.", which seems to be what's happening here. But I've been zcating .gz files ALL THE TIME and it is the first time that something like this happend. 
+
+The solution is to use gzcat instead of zcat and it worked. But I'm still pretty confused. 
