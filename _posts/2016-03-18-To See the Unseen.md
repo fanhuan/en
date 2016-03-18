@@ -4,9 +4,7 @@ title:  To See the Unseen
 categories: [notes]
 tags: [Toast Master]
 ---
-
-#To See the unseen
-##Toast Master Speech #3
+###Toast Master Speech #3
 Props: Binoculars, The Sibley Field Guide to Birds of Eastern North America, Hedwig mug<p>Last week, I found myself walking on campus with huge smiles on my face, for no reason. The weird things is, everybody else also looked pretty happy! Then I realize, of course everybody is happy; it’s spring!<p>
 <p>I’ve been here fives year now and I’m getting used to the winter. What I’m still struggling about winter is the amount of time you spent inside. I’ve got this book, 60 hikes within 60miles of Madison, so I went on my first hike this year last weekend in Governor Nelson’s State Park on the other side of the lake.<p>
 <p>It was a good hike. Still pretty muddy, nothing flowering except pussy willows, then I saw my old friend, red-winged blackbirds.<p>
