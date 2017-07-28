@@ -49,3 +49,6 @@ If there is problem locating libread.so during `make test`, try `$sudo ln -s /us
 ### Universal converter
 	
 	for file in *.ztr; do name=$(basename "$file" .ztr); perl ~/scripts/x2y.pl $file ztr $name.fastq fastq; done
+	python ~/scripts/trimFastq4mothur.py fastq_dir
+	
+	make.contigs(file=namefile,format=sanger)
