@@ -52,3 +52,12 @@ If there is problem locating libread.so during `make test`, try `$sudo ln -s /us
 	python ~/scripts/trimFastq4mothur.py fastq_dir
 	
 	make.contigs(file=namefile,format=sanger)
+	
+Alternative:
+
+mkdir Shelby_0731_phred
+phred -id ~/Shalby_0731 -sd Shelby_0731_phred -qd Shelby_0731_phred
+cd Shelby_0731_phred
+for name in *.seq; do python ~/scripts/fasta_to_fastq.py $name; done
+cd ..
+python ~/scripts/trimFastq4mothur.py Shelby_0731_phred
