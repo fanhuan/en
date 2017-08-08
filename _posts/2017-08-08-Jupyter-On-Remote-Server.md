@@ -5,12 +5,12 @@ categories: [notes]
 tags: [python]
 ---
 
-I went to SDSC Summer Institute last week and had an amazing time. Check out the [agenda](http://si17.sdsc.edu/agenda/). There were a few life-changing moments, which I think I will talk about in later posts. During the workshop, we used jupyter notebook that was installed on Comet, one of the super computer in SDSC, which allowed usage of many cores across the cluster. Therefore the first thing I wanted to do when I'm back was to setup jupyter notebook on the work station in the lab.  
+I went to SDSC Summer Institute last week and had an amazing time. Check out the [agenda](http://si17.sdsc.edu/agenda/). There were a few life-changing moments, which I think I will talk about in later posts. During the workshop, we used jupyter notebook that was installed on Comet, one of the super computers in SDSC, which allowed usage of multicores across the cluster. Therefore the first thing I wanted to do when I was back was to setup jupyter notebook on the work station in the lab.  
 
 
-We have a pretty powerful work station: 40 cores, 330G of RAM (with 3 empty slots that we could fill), and a 60T storage system mounted on it. As I do most of my computing on it, I write python scripts to run on it, instead of using the more interactive jupyter notebook. I only use jupyter notebook on my iMac for exploratory analysis in early stages of data processing, therefore lots of file transferring happens between my iMac and the work station, which is not ideal.
+It's a pretty powerful work station: 40 cores, 330G of RAM (with 3 empty slots that we could still fill), and a 60T storage system mounted on it. As I do most of my computing on it, I usually write python scripts to run there, instead of using the more interactive jupyter notebook. I only use jupyter notebook on my iMac for exploratory analysis in early stages of data processing, therefore lots of file transferring happens between my iMac and the work station, which is not ideal. Not to mention the differences in computing power.
 
-This is a very helpful [post](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jupyter-notebook-to-run-ipython-on-ubuntu-16-04) if you want to set up a Jupyter Notebook on Ubuntu 16.04 with __Python 2.7__. However since it is already 2017 and Andrea Zonca, the organizer of the Summer Institute, doesn't want to hear about Python 2 any more, also I would like to move from multiprocessing to concurrent.futures, which is a new feather in Python 3.6, I decided to write down what I did to set up Jupyter Notebook for __Python 3.6__, still on Ubuntu 16.06.   
+Here is a very helpful [post](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jupyter-notebook-to-run-ipython-on-ubuntu-16-04) if you want to set up a Jupyter Notebook on Ubuntu 16.04 with __Python 2.7__. However since it is already 2017 and Andrea Zonca, the organizer of the Summer Institute, doesn't want to hear about Python 2 any more, also I would like to move from multiprocessing to concurrent.futures, which is a new feather in Python 3.6, I decided to write down what I did to set up Jupyter Notebook for __Python 3.6__, still on Ubuntu 16.06.   
 
 ## Step 1: install jupyter notebook
 
@@ -26,21 +26,21 @@ There are many ways you could do it. Here I recommend Anaconda to save you from 
 		$curl -O https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
 		$bash Anaconda3-4.4.0-Linux-x86_64.sh
 		
-When you are asked __"Anaconda3 will now be installed into this location:"__, enter __/opt/anaconda__, the one we created in step 1.  
-When you are asked __"Do you wish the installer to prepend the Anaconda3 install location"__, say yes so the jupyter you use later is the one in anaconda in case you have other copies elsewhere. `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` is now in your .bashrc but you won't have it in effect until you restart your shell.  
+When you are asked __"Anaconda3 will now be installed into this location:"__, enter `/opt/anaconda`, the one we created in step 1.  
+When you are asked __"Do you wish the installer to prepend the Anaconda3 install location"__, say __yes__ so the jupyter you use later is the one in Anaconda in case you have other copies elsewhere. `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` is now in your .bashrc but you won't have it in effect until you restart your shell.  
 
 ## Step 2: Access from your local browser 
-This is pretty much repeating this [post](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jupyter-notebook-to-run-ipython-on-ubuntu-16-04)  
+This is pretty much repeating this [post](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jupyter-notebook-to-run-ipython-on-ubuntu-16-04).  
 
 __Currie lab users__: `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` if you haven't done so. Write it to your .bashrc if you haven't dones so.
 
 #### 1. SSH Tunneling  
 This opens a port (in this example 8000) on your remote server for your local browser to access. On your local compter:
   
-		ssh -L 8000:localhost:8888 your_server_username@your_server_ip
-#### 2. Now try start your jupyter notebook  
+		$ ssh -L 8000:localhost:8888 your_server_username@your_server_ip
+#### 2. Start your jupyter notebook (on the remote server)
 
-		$jupyter notebook  
+		$ jupyter notebook  
 
 It asked me whether I "Accepting one-time-token-authenticated connection from 127.0.0.1". I answered '__A__laways' but next time it kept asking me... Then it complains:
 
