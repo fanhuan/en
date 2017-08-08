@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Jupyter from a remote sever
+title:  How to set up Jupyter with Python 3.6 on a remote sever (Ubuntu 16.04)
 categories: [notes]
 tags: [python]
 ---
