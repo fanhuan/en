@@ -38,6 +38,7 @@ __Currie lab users__: `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` if you h
 This opens a port (in this example 8000) on your remote server for your local browser to access. On your local compter:
   
 		$ ssh -L 8000:localhost:8888 your_server_username@your_server_ip
+		
 #### 2. Start your jupyter notebook (on the remote server)
 
 		$ jupyter notebook  
