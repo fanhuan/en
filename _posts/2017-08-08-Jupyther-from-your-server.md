@@ -31,6 +31,8 @@ When you are asked __"Do you wish the installer to prepend the Anaconda3 install
 ## Step 2: Access from your local browser 
 This is pretty much repeating this [post](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jupyter-notebook-to-run-ipython-on-ubuntu-16-04)  
 
+__Currie lab users__: `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` if you haven't done so. Write it to your .bashrc if you haven't dones so.
+
 #### 1. SSH Tunneling  
 This opens a port (in this example 8000) on your remote server for your local browser to access. On your local compter:
   
