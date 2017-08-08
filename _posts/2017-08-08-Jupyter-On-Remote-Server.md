@@ -35,11 +35,11 @@ This is pretty much repeating this [post](https://www.digitalocean.com/community
 __Currie lab users__: `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` if you haven't done so. Write it to your .bashrc if you haven't dones so.
 
 #### 1. SSH Tunneling  
-This opens a port (in this example 8000) on your remote server for your local browser to access. On your local compter:
+This opens a port (in this example 8000) on your remote server for your local browser to access. On your __local computer__:
   
 		$ ssh -L 8000:localhost:8888 your_server_username@your_server_ip
 		
-#### 2. Start your jupyter notebook (on the remote server)
+#### 2. Start jupyter on the remote server
 
 		$ jupyter notebook  
 
