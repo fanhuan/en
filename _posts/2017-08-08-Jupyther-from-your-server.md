@@ -38,11 +38,11 @@ This opens a port (in this example 8000) on your remote server for your local br
 		ssh -L 8000:localhost:8888 your_server_username@your_server_ip
 2. Now try start your jupyter notebook  
 
-		$jupyter notebook
+		$jupyter notebook  
 It asked me whether I "Accepting one-time-token-authenticated connection from 127.0.0.1". I answered '__A__laways' but next time it kept asking me... Then it complains:
 
 		Jupyter Notebook requires JavaScript.
-   		Please enable it to proceed.
+   		Please enable it to proceed.  
 Just ingore it buy entering Q. Then your token would be given on the last line, some thing like: `http://localhost:8888/?token=5640c991ffc0c0c6071e9f0d0100d7204e4b05a6d400c440`
 
 3. Access from your local browser  
