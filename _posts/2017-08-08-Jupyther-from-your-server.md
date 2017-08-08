@@ -25,6 +25,7 @@ There are many ways you could do it. Here I recommend Anaconda to save you from 
 		$cd /tmp
 		$curl -O https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
 		$bash Anaconda3-4.4.0-Linux-x86_64.sh
+		
 When you are asked __"Anaconda3 will now be installed into this location:"__, enter __/opt/anaconda__, the one we created in step 1.  
 When you are asked __"Do you wish the installer to prepend the Anaconda3 install location"__, say yes so the jupyter you use later is the one in anaconda in case you have other copies elsewhere. `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` is now in your .bashrc but you won't have it in effect until you restart your shell.  
 
