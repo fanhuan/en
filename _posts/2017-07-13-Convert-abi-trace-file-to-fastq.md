@@ -1,9 +1,24 @@
 ---
 layout: post
-title:  Convert abi trace file to fastq
+title:  Convert, trim and merge 16s sanger sequences
 categories: [notes]
 tags: [Open lab note - Sanger sequencing]
 ---
+
+Even after working with sequences for about a decade, this is my first time working with sanger sequencing. In my lab, we isolate bacteria from various sources and would try to identify them afterwards by sequence their 16s, a universal marker gene for bacteria. My labmates do this on a pretty frequent basis, and each of them has dealt hundreds, if not thousands of those sequences. However they still process them one by one, which is not what I wanted to do.
+
+The sequencing files we got from our on campus biotech center is in ab1 format, which is usually referred to as a "trace file". It contains the chromatogram info, and can be converted into fastq file, but no quality score were applied.
+
+It took me a while to realize that Phred is the only tool to compute the Phred score (widely accepted quality score) because it is patented. Fortunately they let the scientific community use it for free. So I wrote to them and got a copy. Also in the end you need to merge the forward and reverse sequences. It is basically a alignment process. Here I choose to use the make.contigs in the Mothur package. 
+
+The pipeline looks like:  
+### 1. Quality Base Calling
+__Input__: ab1 files  
+__Output__: .seq(or fasta) and .qual files  
+__Tool__: phred
+
+### 2. fastq and trimming
+In this step we combine the fasta and quality score files into one fastq file and do some basic trimming using inhouse python script. 
 
 System: Ubuntu 16.04.2
 ### Install [Staden] (https://sourceforge.net/project/showfiles.php?group_id=100316)
@@ -54,10 +69,11 @@ If there is problem locating libread.so during `make test`, try `$sudo ln -s /us
 	make.contigs(file=namefile,format=sanger)
 	
 Alternative:
-
-mkdir Shelby_0731_phred
-phred -id ~/Shalby_0731 -sd Shelby_0731_phred -qd Shelby_0731_phred
-cd Shelby_0731_phred
-for name in *.seq; do python ~/scripts/fasta_to_fastq.py $name; done
-cd ..
-python ~/scripts/trimFastq4mothur.py Shelby_0731_phred
+PHRED_PARAMETER_FILE=/home/hfan/build/phred/phredpar.dat  
+export PHRED_PARAMETER_FILE  
+mkdir Shelby_0731_phred  
+phred -id ~/Shalby_0731 -sd Shelby_0731_phred -qd   Shelby_0731_phred  
+cd Shelby_0731_phred  
+for name in *.seq; do python /home/hfan/scripts/  fasta_to_fastq.py $name; done  
+cd ..  
+python ~/scripts/trimFastq4mothur.py Shelby_0731_phred  
