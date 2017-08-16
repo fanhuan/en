@@ -31,10 +31,10 @@ __Network Architecture__(from the same [post](http://www.subsubroutine.com/sub-s
 7: Dropout layer to combat overfitting  
 8: Fully-connected layer with two outputs  
 9: Regression 
-### Test 1: uneven dataset ([code](https://github.com/fanhuan/ImageClassification/TensorFlow_Ant.ipynb))
+### Test 1: uneven dataset ([code](https://github.com/fanhuan/ImageClassification/blob/master/TensorFlow_Ant.ipynb))
 I split my data into 80% training, 10% validation and 10% testing. As you can see I only have 1G of GPU RAM and I quickly ran into ResourceExhaustedError during the training (batch_size=100). I decreased the batch_size to 50, and only trained for 10 epochs. I got an accuracy of __79.8%__ with cross-validation.
 
-### Test 2: balanced dataset ([code](https://github.com/fanhuan/ImageClassification/TensorFlow_Ant_balanced.ipynb))
+### Test 2: balanced dataset ([code](https://github.com/fanhuan/ImageClassification/blob/master/TensorFlow_Ant_balanced.ipynb))
 I looked at the dogs vs. cats dataset again, how convinient that the dogs and cats have exact the same number of pictures! Then I realized that if I don't give the model the same amount of pictures from the two categrories to train, it might overfit one category while fail to extract important features from the other. So I made a balanced dataset with 3672 pictures from good and 3672 from bad (90% training and 10% validating). I also increased the batch size to 100 since now I'm running a smaller dataset. The accuracy increased to __98.58%__! When used on the test dataset (3672 pictures with 1250 good and 2829 bad ones), the accuracy on the __good__ ones were __100%__! However the accuracy on the __bad__ ones were still __80%__. __Anna Karenina principle__ again is in the way.
 
 ### Test 3: yes binary classification.
