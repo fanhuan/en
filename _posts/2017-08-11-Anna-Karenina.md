@@ -37,7 +37,7 @@ I split my data into 80% training, 10% validation and 10% testing. As you can se
 ### Test 2: balanced dataset ([code](https://github.com/fanhuan/ImageClassification/blob/master/TensorFlow_Ant_balanced.ipynb))
 I looked at the dogs vs. cats dataset again, how convinient that the dogs and cats have exact the same number of pictures! Then I realized that if I don't give the model the same amount of pictures from the two categrories to train, it might overfit one category while fail to extract important features from the other. So I made a balanced dataset with 3672 pictures from good and 3672 from bad (90% training and 10% validating). I also increased the batch size to 100 since now I'm running a smaller dataset. The accuracy increased to __98.58%__! When used on the test dataset (3672 pictures with 1250 good and 2829 bad ones), the accuracy on the __good__ ones were __100%__! However the accuracy on the __bad__ ones were still __80%__. __Anna Karenina principle__ again is in the way.
 
-### Test 3: yes binary classification.
+### Test 3: binary yes/no classification
 I was actually not too discouraged by the result of test 2. Afterall, if we could get rid of a large amount of bad pictures (the false negative rate was 0 in that dataset), it already would drastically reduced the burdon on my labmate. But I did not understand why given a balanced dataset, the model ends up so biased towards the good ones.
 
 Then I realized that this is not a dogs vs. cats problem. This is a dogs vs. non-dogs problem (sorry cat people)！ 
