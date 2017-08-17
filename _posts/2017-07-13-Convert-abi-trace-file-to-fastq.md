@@ -12,14 +12,39 @@ The sequencing files we got from our on campus biotech center is in ab1 format, 
 It took me a while to realize that Phred is the only tool to compute the Phred score (widely accepted quality score) because it is patented. Fortunately they let the scientific community use it for free. So I wrote to them and got a copy. Also in the end you need to merge the forward and reverse sequences. It is basically a alignment process. Here I choose to use the make.contigs in the Mothur package. 
 
 The pipeline looks like:  
-### 1. Quality Base Calling
-__Input__: ab1 files  
+__ab1 files --_Phred_--> seq and qual files --_seq\_qual2trimmed\_fastq.py_--> trimmed fastq files --_Mothur_--> merged fasta file with qual file__ 
+### 1. Quality Base Calling using phred
+[How to get](http://www.phrap.org/consed/consed.html#howToGet) phred if you work for a government or educational institute. Go the the second half of the post if you don't.  
+__Input__: directory containing ab1 files  
 __Output__: .seq(or fasta) and .qual files  
-__Tool__: phred
+__Tool__: phred  
+__Command example__: 
+
+	PHRED_PARAMETER_FILE=/home/hfan/build/phred/phredpar.dat  
+	export PHRED_PARAMETER_FILE  
+	phred -id ab1_dir -sd ab1_dir1 -qd ab1_dir  
 
 ### 2. fastq and trimming
-In this step we combine the fasta and quality score files into one fastq file and do some basic trimming using inhouse python script. 
+In this step we combine the fasta(.seq) and quality score(.qual) files into one fastq file and do some basic trimming using [inhouse python script](https://github.com/fanhuan/script/blob/master/seq_qual2trimmed_fastq.py).  
+__Input__: directory containing .seq and .qual files  
+__Output__: trimmed fastq files   
+__Tool__: seq_qual2trimmed_fastq.py  
+__Command example__: 
 
+	python seq\_qual2trimmed\_fastq.py ab1\_dir 
+
+### 3. merge forward and reverse strand.
+Here I use [mothur](https://www.mothur.org/) (lazy, didn't wanna do the alignment by myself). a ab1_dir.namefile should have been generated from the previous step.
+
+__Input__: trimmed fastq files and ab1_dir.namefile  
+__Output__: ab1_dir.trim.contigs.fasta  
+__Tool__: mothur  
+__Command example__:
+
+	$mothur
+	mothur > make.contigs(file=ab1_dir.namefile,format=sanger)
+	mothur > quit
+	
 System: Ubuntu 16.04.2
 ### Install [Staden] (https://sourceforge.net/project/showfiles.php?group_id=100316)
 
@@ -72,7 +97,7 @@ Alternative:
 PHRED_PARAMETER_FILE=/home/hfan/build/phred/phredpar.dat  
 export PHRED_PARAMETER_FILE  
 mkdir Shelby_0731_phred  
-phred -id ~/Shalby_0731 -sd Shelby_0731_phred -qd   Shelby_0731_phred  
+phred -id ab1_dir -sd ab1_dir1 -qd ab1_dir  
 cd Shelby_0731_phred  
 for name in *.seq; do python /home/hfan/scripts/  fasta_to_fastq.py $name; done  
 cd ..  
