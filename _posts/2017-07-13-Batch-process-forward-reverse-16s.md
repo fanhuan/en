@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Convert, trim and merge 16s sanger sequences
+title:  Batch process forward and reverse 16s sanger sequences
 categories: [notes]
 tags: [Open lab note - Sanger sequencing]
 ---
@@ -14,13 +14,13 @@ It took me a while to realize that Phred is the only tool to compute the Phred s
 The pipeline looks like:  
 __ab1 files --_Phred_--> seq and qual files --_seq\_qual2trimmed\_fastq.py_--> trimmed fastq files --_Mothur_--> merged fasta file with qual file__ 
 
-### Impatiant myceto users from the __Currie lab__:  
+## Impatiant myceto users from the __Currie lab__:  
 Make sure your ab1 sequences are renamed in the format:
 strainID\_F.ab1 or strainID_R.ab1. The strainID part could be anything as long as they match each other within a pair. Then login to myceto and:
 	
 	sh /opt/scripts/16s.sh ab1_dir 
 
-### Others:
+## Others:
 
 ### 1. Quality Base Calling using phred
 [How to get](http://www.phrap.org/consed/consed.html#howToGet) phred if you work for a government or educational institute. Go to the second half of the post if you don't.  
@@ -52,15 +52,15 @@ __Command example__:
 
 	mothur "#make.contigs(file=ab1_dir.namefile,format=sanger)"
 	
-### People without Phred
+## People without Phred
 
 You can use Staden instead. It is GUI but it support batch processing and trimming.
 
-#### Install [Staden] (https://sourceforge.net/project/showfiles.php?group_id=100316)
+### Install [Staden] (https://sourceforge.net/project/showfiles.php?group_id=100316)
 
 Base calling, possibly trimming, and convert ab1 file to zrt files.
 
-#### Use bioperl to convert zrt to fastq
+### Use bioperl to convert zrt to fastq
 Install [bioperl](http://bioperl.org/INSTALL.html).
 You also need to install [bioperl-ext](https://github.com/bioperl/bioperl-ext) for its Bio::SeqIO::staden::read extension. Follow all the instructions!!! Note: "It is only useful as a helper module for the SeqIO system to read sequence trace files handled by the Staden package's io\_lib "read" library. You should have this library installed prior to installing Bio::SeqIO::staden::read". I'm sure you've noticed some of the folders are 15 years old! This shouldn't be possible as "Development of the [GitHub](https://en.wikipedia.org/wiki/GitHub) platform began on 1 October 2007." and git itself only started on 2005.  
 Short answer:  
@@ -96,16 +96,16 @@ can be changed with the --prefix option to "configure".
 	
 If there is problem locating libread.so during `make test`, try `$sudo ln -s /usr/local/lib/libread.so /usr/lib/`
 
-#### Universal converter 
-The universal converter is a perl script taking from [here](http://bioperl.org/howtos/SeqIO_HOWTO.html).
+### Convert zrt to fastq 
+[x2y.pl](http://bioperl.org/howtos/SeqIO_HOWTO.html) is a perl that can convert between formats recognized by BioPerl. Note that there are more formats accepted in BioPerl than BioPython (what else made you think I would use Perl rather than Python?)
 
 	
 	for file in *.ztr; do name=$(basename "$file" .ztr); perl x2y.pl $file ztr $name.fastq fastq; done
 
-#### Trim and merge
+### Trim and merge
 Get the script [trimFastq4mothur.py](https://github.com/fanhuan/script/blob/master/trimFastq4mothur.py)
+Get [mothur](https://www.mothur.org/)
 	
 	python trimFastq4mothur.py fastq_dir
-	
-	make.contigs(file=namefile,format=sanger)
+	mothur "#make.contigs(file=fastq_dir.namefile,format=sanger)"
 	 
