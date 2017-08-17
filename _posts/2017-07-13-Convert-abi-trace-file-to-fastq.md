@@ -13,8 +13,17 @@ It took me a while to realize that Phred is the only tool to compute the Phred s
 
 The pipeline looks like:  
 __ab1 files --_Phred_--> seq and qual files --_seq\_qual2trimmed\_fastq.py_--> trimmed fastq files --_Mothur_--> merged fasta file with qual file__ 
+
+### Impatiant myceto users from the __Currie lab__:  
+Make sure your ab1 sequences are renamed in the format:
+strainID\_F.ab1 or strainID_R.ab1. The strainID part could be anything as long as they match each other within a pair. Then login to myceto and:
+	
+	sh /opt/scripts/16s.sh ab1_dir 
+
+### Others:
+
 ### 1. Quality Base Calling using phred
-[How to get](http://www.phrap.org/consed/consed.html#howToGet) phred if you work for a government or educational institute. Go the the second half of the post if you don't.  
+[How to get](http://www.phrap.org/consed/consed.html#howToGet) phred if you work for a government or educational institute. Go to the second half of the post if you don't.  
 __Input__: directory containing ab1 files  
 __Output__: .seq(or fasta) and .qual files  
 __Tool__: phred  
@@ -41,15 +50,18 @@ __Output__: ab1_dir.trim.contigs.fasta
 __Tool__: mothur  
 __Command example__:
 
-	$mothur
-	mothur > make.contigs(file=ab1_dir.namefile,format=sanger)
-	mothur > quit
+	mothur "#make.contigs(file=ab1_dir.namefile,format=sanger)"
 	
-System: Ubuntu 16.04.2
-### Install [Staden] (https://sourceforge.net/project/showfiles.php?group_id=100316)
+### People without Phred
 
-Convert ab1 file from biotechcenter to zrt files.
-### Install [bioperl](http://bioperl.org/INSTALL.html)
+You can use Staden instead. It is GUI but it support batch processing and trimming.
+
+#### Install [Staden] (https://sourceforge.net/project/showfiles.php?group_id=100316)
+
+Base calling, possibly trimming, and convert ab1 file to zrt files.
+
+#### Use bioperl to convert zrt to fastq
+Install [bioperl](http://bioperl.org/INSTALL.html).
 You also need to install [bioperl-ext](https://github.com/bioperl/bioperl-ext) for its Bio::SeqIO::staden::read extension. Follow all the instructions!!! Note: "It is only useful as a helper module for the SeqIO system to read sequence trace files handled by the Staden package's io\_lib "read" library. You should have this library installed prior to installing Bio::SeqIO::staden::read". I'm sure you've noticed some of the folders are 15 years old! This shouldn't be possible as "Development of the [GitHub](https://en.wikipedia.org/wiki/GitHub) platform began on 1 October 2007." and git itself only started on 2005.  
 Short answer:  
 1. sudo cpanm Inline::MakeMaker  
@@ -84,21 +96,16 @@ can be changed with the --prefix option to "configure".
 	
 If there is problem locating libread.so during `make test`, try `$sudo ln -s /usr/local/lib/libread.so /usr/lib/`
 
+#### Universal converter 
+The universal converter is a perl script taking from [here](http://bioperl.org/howtos/SeqIO_HOWTO.html).
 
-
-### Universal converter
 	
-	for file in *.ztr; do name=$(basename "$file" .ztr); perl ~/scripts/x2y.pl $file ztr $name.fastq fastq; done
-	python ~/scripts/trimFastq4mothur.py fastq_dir
+	for file in *.ztr; do name=$(basename "$file" .ztr); perl x2y.pl $file ztr $name.fastq fastq; done
+
+#### Trim and merge
+Get the script [trimFastq4mothur.py](https://github.com/fanhuan/script/blob/master/trimFastq4mothur.py)
+	
+	python trimFastq4mothur.py fastq_dir
 	
 	make.contigs(file=namefile,format=sanger)
-	
-Alternative:
-PHRED_PARAMETER_FILE=/home/hfan/build/phred/phredpar.dat  
-export PHRED_PARAMETER_FILE  
-mkdir Shelby_0731_phred  
-phred -id ab1_dir -sd ab1_dir1 -qd ab1_dir  
-cd Shelby_0731_phred  
-for name in *.seq; do python /home/hfan/scripts/  fasta_to_fastq.py $name; done  
-cd ..  
-python ~/scripts/trimFastq4mothur.py Shelby_0731_phred  
+	 
