@@ -23,6 +23,10 @@ strainID\_F.ab1 or strainID_R.ab1. The strainID part could be anything as long a
 	# user provided parameters, e.g. quality cutoff = 12, consecutive window = 8)
 	sh /opt/scripts/16s.sh ab1_dir 12 8
 	# Other numbers of parameters are illegal.
+	
+This will give you a fasta file called ab1_dir.trim.contigs.fasta, with all the merged 16s sequence for each sample. Now you could do a remote blast to see what they are. For example:  
+
+	blastn -query ab1_dir.trim.contigs.fasta -db nt -out Donny.out -remote -outfmt "6 qacc saccver pident sscinames length mismatch gapopen evalue bitscore"
 
 ## Others:
 
