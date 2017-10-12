@@ -15,7 +15,7 @@ Here is a very help [post](https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r
 	library(ggplot2)
 	library(ggrepel)
 	# Read in the distance file, aaf.dist for example
-	distance <- read.table(file = aaf.dist,skip = 1, row.names = 1)
+	distance <- read.table(file = 'aaf.dist',skip = 1, row.names = 1)
 	# Turn it into a matrix
 	colnames(distance) <- rownames(distance)
 	dis_matrix <- as.matrix(distance)
@@ -27,6 +27,26 @@ Here is a very help [post](https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r
 	ggplot(points) +
   		geom_point(aes(NMDS1,NMDS2),color = 'red') + 
   		geom_text_repel(aes(NMDS1,NMDS2,label = rownames(points)))
+  		
+---
+# Update on MASS
+It seems like the nmds function disappeared from the MASS package. Here is an alternative using vegan
+
+	library(vegan)
+	# Read in the distance file
+	distance <- read.table(file = 'aaf.dist',
+                       skip = 1, row.names = 1)
+	# Turn it into a matrix
+	colnames(distance) <- rownames(distance)
+	dis_matrix <- as.matrix(distance)
+	# Collaps into two dimension using the metaMDS function from vegan
+	example_NMDS=metaMDS(dis_matrix, # Our distance matrix
+                        k=2) # The number of reduced dimensions
+	#Stress plot. See explaintation at https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r/
+	stressplot(example_NMDS)
+	plot(example_NMDS)
+	ordiplot(example_NMDS,type="n")
+	orditorp(example_NMDS,display="sites",col="red",air=0.01)
   
   		
    
