@@ -35,8 +35,10 @@ This tool takes the ncbi nucleotide accession of genomes. To look for the access
 ### Annotate the composite genomes
 After calculate the ANI between the composite genomes and their sister branch in the checkM tree, most of them don't have a similarity higher than 97%. Therefore We need to annotate the composite genomes, hopefully get the 16s of them, and try to id them properly. Here we choose [prokka](https://github.com/tseemann/prokka) for annotation of prokaryotes.
 
-prokka ../Black/ABBM1_maxbin001/ABBM1_maxbin.001.fasta --outdir ABBM1_maxbin001 --prefix ABBM1_maxbin001
-blast --locustag ABBM1_maxbin001
+	for name in /media/backup_4tb/Lily_backup/Pantoea/*.*
+	do 
+		base=${name%.fa*}
+		for name in *.*; do base=${name%.fa*}; prokka $name --outdir $base --prefix $base --locustag $base; done
 
 Get 16S sequences: Lily\_composite\_genomes.ipynb
 
