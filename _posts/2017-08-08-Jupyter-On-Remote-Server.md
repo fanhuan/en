@@ -32,18 +32,18 @@ When you are asked __"Do you wish the installer to prepend the Anaconda3 install
 ## Step 2: Access from your local browser 
 This is pretty much repeating this [post](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jupyter-notebook-to-run-ipython-on-ubuntu-16-04).  
 
-__Currie lab users__: `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` if you haven't done so. Write it to your .bashrc if you haven't dones so.
-
 #### 1. SSH Tunneling  
 This opens a port (in this example 8000) on your remote server for your local browser to access. On your __local computer__:
   
 		$ ssh -L 8000:localhost:8888 your_server_username@your_server_ip
 		
 #### 2. Start jupyter on the remote server
+__Currie lab users__: `export PATH="/opt/anaconda/anaconda3/bin:$PATH"` if you haven't done so. Write it to your .bashrc if you haven't dones so. Then，
+
 
 		$ jupyter notebook  
 
-It asked me whether I "Accepting one-time-token-authenticated connection from 127.0.0.1". I answered '__A__laways' but next time it kept asking me... Then it complains:
+It asks you whether you "Accepting one-time-token-authenticated connection from 127.0.0.1". I answered '__A__laways' but next time it kept asking me... Then it complains:
 
 		Jupyter Notebook requires JavaScript.
    		Please enable it to proceed.  
