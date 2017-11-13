@@ -59,5 +59,41 @@ Since they are all escovopsis, I choose to use megablast	of blastn: "Traditional
 	$blastn -db Esc_LSU -out Esc_LSU.m6 -query Cameron_LSU_2003.fa -max_hsps 1 -outfmt 6
 	
 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore
-ICBGSID742	NODE_1_length_598385_cov_54.978813	100.000	598385	0	0	1598385	1	598385	0.0	1.105e+06
+ICBGSID742	NODE_1_length_598385_cov_54.978813	100.000	598385	0	0	1598385	1	598385	0.0	1.105e+063
+
+3. Extract gene sequences based on blast results.
+
+		import pandas as pd
+		from collections import Counter
+		from Bio import SeqIO
+		import os
+		fasta_path = '/home/hfan/projects/Escovopsis/fasta/'
+		df = pd.read_table('/home/hfan/projects/Escovopsis/LSU/Esc_LSU.m6', 
+		        names = ['qseqid','sseqid','pident','length','mismatch','gapopen','qstart','qend', 
+		                 'sstart','send','evalue','bitscore'])
+		df['SID'],df['contig'] = df.sseqid.str.split('_',1).str
+		for SID in df.SID.unique():
+		    sub_df = df.loc[df['SID'] == SID]
+		    contig = Counter(sub_df['contig']).most_common(1)[0][0]
+		    sstart = int(Counter(sub_df.loc[sub_df['contig'] == contig]['sstart']).most_common(1)[0][0])
+		    send = int(Counter(sub_df.loc[sub_df['contig'] == contig]['send']).most_common(1)[0][0])
+		    print(SID,contig,sstart,send)
+		    for file in os.listdir(fasta_path):
+		        if file.split('_')[2][:-len('.fa')] == SID[len('ICBGSID'):]:
+		            with open(file[:-len('.fa')] + '_LSU.fa','w') as fh:
+		                for record in SeqIO.parse(fasta_path + file, 'fasta'):
+		                    if record.id[len(SID)+1:] == contig:
+		                        if sstart > send:
+		                            sstart,send = send, sstart
+		                        fh.write('>{} {}-{}\n'.format(record.id,sstart,send))
+		                        seq = str(record.seq[sstart-1:send])
+		                        print(seq)
+		                        fh.write(seq + '\n')
+
+4. Add those sequences to the existing marker gene sequences. Now I need to make a gene tree! When was the last time that I've done that? When I was writing my Chinese thesis.
+
+a. alignment: mafft
+		
+	mafft --auto --maxiterate 1000 --thread 40 LSU.fa > LSU.afa
+
 
