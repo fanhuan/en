@@ -94,6 +94,9 @@ ICBGSID742	NODE_1_length_598385_cov_54.978813	100.000	598385	0	0	1598385	1	59838
 
 a. alignment: mafft
 		
-	mafft --auto --maxiterate 1000 --thread 40 LSU.fa > LSU.afa
+	$mafft --auto --maxiterate 1000 --thread 40 LSU.fa > LSU.afa
+	#convert fasta alignemnt to phylip and bear with the 10 charater species name bs.
+	# RAxML for tree
+	 
 
 

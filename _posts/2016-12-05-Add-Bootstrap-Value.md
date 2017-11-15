@@ -15,5 +15,18 @@ or
 >((raccoon:19.19959,bear:6.80041):0.84600[50],((sea_lion:11.99700, seal:12.00300):7.52973[100],((monkey:100.85930,cat:47.14069):20.59201[80], weasel:18.87953):2.09460[75]):3.87382[50],dog:25.46154);
 
 
-However, figtree only accepts the first one. My bootstrap values are usually generated using consense from the phylip package. They give you the consensus tree with bootstrap values for each branch as branch length. To incorporte this value back to your tree (supposingly the topologies are the same), I need to write a python script.
+However, figtree only accepts the first one. A script to convert between the two:
+
+
+If you are generating bootstrap values using consense from the phylip package, consider this snippet of code from [Biopython](http://biopython.org/wiki/Phylo):
+
+Branch Support
+
+To get the branch support of a specific tree, we can use the get_support method.
+
+>from Bio import Phylo  
+>from Bio.Phylo.Consensus import *  
+>trees = list(Phylo.parse('fileWithAllTheTrees', 'newick'))  
+>target\_tree = Phylo.parse('outtreeGenerateByConsense','newick')  
+>support\_tree = get_support(target\_tree, trees)
 
