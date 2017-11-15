@@ -18,8 +18,8 @@ or
 However, figtree only accepts the first one. A snippet of code to convert between the two:
 
 	import re
-	input_tree = '((raccoon:19.19959,bear:6.80041):0.84600[50],((sea_lion:11.99700, seal:12.00300):7.52973[100], \
-	((monkey:100.85930,cat:47.14069):20.59201[80], weasel:18.87953):2.09460[75]):3.87382[50],dog:25.46154);'
+	with open('input.tre') as fh:
+    input_tree = ''.join(line.rstrip() for line in fh.readlines())                       
 	bs_regex = re.compile(':\d+\.\d+\[\d+\]') 
 	bss = bs_regex.findall(input_tree) 
 	for item in bss:

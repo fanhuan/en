@@ -97,6 +97,7 @@ a. alignment: mafft
 	$mafft --auto --maxiterate 1000 --thread 40 LSU.fa > LSU.afa
 	#convert fasta alignemnt to phylip and bear with the 10 charater species name bs.
 	# RAxML for tree
+	You want the RAxML_bipartitionsBranchLabels.result file. It contains the bootstrap value. Refer to this post for converting it to another Figtree friendly 
 	 
 
 
