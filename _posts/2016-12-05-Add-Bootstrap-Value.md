@@ -19,15 +19,15 @@ However, figtree only accepts the first one. A snippet of code to convert betwee
 
 	import re
 	with open('input.tre') as fh:
-    input_tree = ''.join(line.rstrip() for line in fh.readlines())                       
-	bs_regex = re.compile(':\d+\.\d+\[\d+\]') 
-	bss = bs_regex.findall(input_tree) 
-	for item in bss:
-	    bs = item.split('[')[1][:-len(']')]
-	    bl = item.split('[')[0]
-	    new_item = bs + bl 
-	    new_tree = input_tree.replace(item, new_item,1)
-	    input_tree = new_tree
+   		input_tree = ''.join(line.rstrip() for line in fh.readlines())                       
+		bs_regex = re.compile(':\d+\.\d+\[\d+\]') 
+		bss = bs_regex.findall(input_tree) 
+		for item in bss:
+		    bs = item.split('[')[1][:-len(']')]
+		    bl = item.split('[')[0]
+		    new_item = bs + bl 
+		    new_tree = input_tree.replace(item, new_item,1)
+		    input_tree = new_tree
 
 	print(new_tree)
 
