@@ -95,9 +95,56 @@ ICBGSID742	NODE_1_length_598385_cov_54.978813	100.000	598385	0	0	1598385	1	59838
 a. alignment: mafft
 		
 	$mafft --auto --maxiterate 1000 --thread 40 LSU.fa > LSU.afa
-	#convert fasta alignemnt to phylip and bear with the 10 charater species name bs.
-	# RAxML for tree
-	You want the RAxML_bipartitionsBranchLabels.result file. It contains the bootstrap value. Refer to this post for converting it to another Figtree friendly 
+	
+If you are combining LSU sequences from different batches, sometimes the primers used are different. This would result in large chuncks of gaps in the beginning and the end of the alignment file. The following snippet of code deals with three things:
+
+- Trim gaps in the beginning and end of mafft alignment output
+- convert fasta alignemnt to phylip 
+- Deal with the 10-charater species name requirement of phylip
+
+		from Bio import AlignIO
+		import sys
+		afa = "LSU.afa"
+		phylip = afa.split('.')[0] + '.phylip'
+		namefile = afa.split('.')[0] + '.namedic'
+		align = AlignIO.read(afa, "fasta")
+		namedic = {}
+		start = []
+		end = []
+		# Trim the alignment to have everything aligned.
+		for record in align:
+		    bp_regex = re.compile("[atcgATCG]")
+		    matches = bp_regex.finditer(str(record.seq))
+		    positions = [m.start() for m in matches]
+		    start.append(positions[0])
+		    end.append(positions[-1])
+		
+		sstart = max(start)
+		send = min(end)
+		
+		for record in align:
+		    lsl = len(record.id)
+		    if lsl >= 10:
+		        ssl = record.id[:10]
+		    else:
+		        ssl = record.id
+		    appendix = 0
+		    while ssl in namedic:
+		        ssl = ssl[:-len(str(appendix))] + str(appendix)
+		        appendix += 1
+		    namedic[ssl] = record.id
+		    record.id = ssl
+		    record.seq = record.seq[sstart:send+1]
+		    
+		AlignIO.write(align,phylip,'phylip')
+		with open(namefile,'w') as fh:
+		    for key in namedic:
+		        fh.write('{}: {}\n'.format(key,namedic[key]))
+
+b. RAxML for tree  
+We have RAxML installed on the server but for some reason it is very slow. I use the online version provided by [Science Gateway](https://www.phylo.org/portal2/login!input.action). You want the RAxML_bipartitionsBranchLabels.result file. It contains the bootstrap value. Refer to this post for converting it to another way of representing bootstrap values that is Figtree friendly.
+
+The end.
 	 
 
 
