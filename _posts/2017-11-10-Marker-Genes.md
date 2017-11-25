@@ -55,7 +55,7 @@ Input: LSU from another strain of Escovopsis. This could be downloaded from NCBI
 
 Since they are all escovopsis, I choose to use megablast	of blastn: "Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences".
 
-	$makeblastdb -in temp.fa -input_type fasta -title Esc_LSU -parse_seqids -out Esc_LSU -dbtype nucl
+	$makeblastdb -in genomes.fa -input_type fasta -title Esc_LSU -parse_seqids -out Esc_LSU -dbtype nucl
 	$blastn -db Esc_LSU -out Esc_LSU.m6 -query Cameron_LSU_2003.fa -max_hsps 1 -outfmt 6
 	
 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore
