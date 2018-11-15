@@ -39,7 +39,7 @@ __Command example__:
 
 	PHRED_PARAMETER_FILE=/home/hfan/build/phred/phredpar.dat  
 	export PHRED_PARAMETER_FILE  
-	phred -id ab1_dir -sd ab1_dir1 -qd ab1_dir  
+	phred -id ab1_dir -sd ab1_dir -qd ab1_dir  
 
 ### 2. fastq and trimming
 In this step we combine the fasta(.seq) and quality score(.qual) files into one fastq file and do some basic trimming using [inhouse python script](https://github.com/fanhuan/script/blob/master/seq_qual2trimmed_fastq.py).  
