@@ -66,3 +66,10 @@ The author is working on more robust way of filtering low count contigs but for 
 
 Afterwords if you wish to generate the new krona html file you can run `ktImportText yourNew.krona.tab -o outfile.html`.
 
+### Epilogue
+
+One thing I wanted to do but failed to do is to calculate a rarefaction curve based on the 16s contigs assembled by matam and the classification done later by rdp. I was trying to use part of the [muthur pipeline](https://www.mothur.org/wiki/MiSeq_SOP#Alpha_diversity). However, this requires me to have a block of perfectly aligned sequences. It did not work for my data, since a lot of my matam assemblies are partial 16s, and there won't be much if any overlap for the whole dataset. 
+
+However there are many other ways of calculating the rarefaction curves. If we insists on using 16s data, the `rarecurve` function from the `vegan` package should be sufficient. Microbial ecology is after all community ecology. See a [tutorial in R](https://colisci.univie.ac.at/uploads/media/Basic_analysis_in_R.pdf) for detailed code.
+
+If the ultimate goal is estimate the depth of the sequencing, it can be done directly from metagenomic sequencing. Several tools are available such as [this one](https://msystems.asm.org/content/3/3/e00039-18).
