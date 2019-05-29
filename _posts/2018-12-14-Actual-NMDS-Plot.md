@@ -29,5 +29,9 @@ multi-pairwise comparison Tukey’s tests to determine how the communities are d
 ## Or go direct to [HCPC](http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/117-hcpc-hierarchical-clustering-on-principal-components-essentials/) (Hierarchical Clustering on Principal Components)
 Then later just switch PC1 PC2 with NMDS1 or NMDS2.
 
+OK, now the problem of clustering has been solved (clustering based on decomposed data instead of original ones), and it gives as some tests on how significantly different each variable is in different clusters. 
+
+hai bao cu
+
 
 
