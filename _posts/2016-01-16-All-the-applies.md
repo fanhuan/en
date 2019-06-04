@@ -17,7 +17,7 @@ But what should you use then? There is a school of functions called .apply$. The
 
 Here `l` stands for list. If you supply a dataframe, it returns a dataframe, while if you supply a list, it returns a list, very convenient. 
 
-However there is a catch: what kind of functions can be used here. Those that take only one argument, which is the data itself, has not problem. Just make sure you don't add the parenthesis after the function name. e.g. lapply(df$col1, max). But what if we need to use a function that requires more than one argument, say strsplit?
+However there is a catch: what kind of functions can be used here. Those that take only one argument, which is the data itself, has not problem. Just make sure you don't add the parenthesis after the function name. e.g. `lapply(df$col1, max)`. But what if we need to use a function that requires more than one argument, say strsplit? You could write it out `lapply(df$col1, function(x) x^2)`
 
 
  
