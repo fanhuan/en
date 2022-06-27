@@ -1,0 +1,3 @@
+The NUCmer .delta file output is parsed (into .filter files?) to obtain an alignment length
+  and similarity error count for every unique region alignment between
+  the two organisms, as represented by the sequences in the FASTA files.
