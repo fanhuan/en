@@ -1,4 +1,4 @@
-#markdown: kramdown
+markdown: kramdown
 permalink: /:year/:month/:day/:title/
 url: http://fanhuan.github.io/en
 author: Huan Fan
