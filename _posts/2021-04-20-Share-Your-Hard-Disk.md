@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hotkey
+title: How to share a hard disk with other users
 categories: [notes]
 tags: [Mac]
 ---

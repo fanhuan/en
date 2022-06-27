@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hotkey
+title: Hotkey on Macs
 categories: [notes]
 tags: [Mac]
 ---

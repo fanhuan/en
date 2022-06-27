@@ -1,8 +1,0 @@
----
-layout: post
-title: Confidence scoring in kraken2
-categories: [notes]
-tags: [k-mer][metagenomics]
----
-
-I am dealing with a dataset of plant transcriptome where I am mining for microbial signals. As you might have guessed that I have tried HuMANN3-alfa (please see the previous post). With its 
