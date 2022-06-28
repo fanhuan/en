@@ -9,7 +9,7 @@ GitPages has stopped deploy my posts for a while and I didn't know why. I was ab
 
 Anyways. Today I'd like to talk about what to do when you did more `dev.off()` in R than you need to and cannot get back to `RStudioGD` aka plotting in the lower right corner of your RStudio console.
 
-### Step 1. To save a plot in a file.
+### Step 1. To save a plot to a file.
 
 You can save it to specific format, say pdf.
 
@@ -20,19 +20,20 @@ You can save it to specific format, say pdf.
 This would return 
 
 	RStudioGD
-			2
+		2
+			
 in the console. This means you will be able to see your plot in the console again.
 
 ###  Step 2. Somehow you messed up.
 
-You might have forgot to run `dev.off()` or did it twice, anyways, you cannot plot to the console anymore. What do you do?
+You might have forgotten to run `dev.off()` or did it twice, anyways, you cannot plot to the console anymore. What do you do?
 
 	> dev.new() # start a new device; default is RStudioGD
 	> dev.cur() # check out the current device
 	RStudioGD
-			2
+		2
 
-OK all good again.
+OK all good again, and welcome back.
 
 
 
