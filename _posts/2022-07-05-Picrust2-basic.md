@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Install and Running Picrust2
+title: Install and Running Picrust2 - Basic
 categories: [notes]
 tags: [python]
 ---
@@ -124,7 +124,9 @@ Folder containing predicted pathway abundances and coverages per-sample, based o
 
 ## How about the KEGG pathways? 
 
-The mapping file from KO numbers to KEGG pathways are provided in `picrust2-2.5.0/picrust2/default_files/pathway_mapfiles/KEGG_*_to_KO.tsv`. Enriched can be done using [ClusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html) fro the Yu Lab. [KASS](https://www.genome.jp/kegg/kaas/) is another option but it starts with fasta, seem to be a waste for redoing the KO assignment. 
+	"Note that KEGG pathways are not supported since KEGG is a closed-source database, but you can input custom pathway mapfiles if you have access. If you are using a custom function database did you mean to set the --no-regroup flag and/or change the default pathways mapfile used?"
+
+However the mapping file from KO numbers to KEGG pathways are provided in `picrust2-2.5.0/picrust2/default_files/pathway_mapfiles/KEGG_*_to_KO.tsv`. Enriched can be done using [ClusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html) fro the Yu Lab. [KASS](https://www.genome.jp/kegg/kaas/) is another option but it starts with fasta, seem to be a waste for redoing the KO assignment. 
 
 ## Additional output files
 
@@ -149,45 +151,6 @@ To add a description column to E.C. number, KO, and MetaCyc pathway abundance ta
 
 	add_descriptions.py -i pathways_out/path_abun_unstrat.tsv.gz -m METACYC \
                     -o pathways_out/path_abun_unstrat_descrip.tsv.gz
-                     
-## Generating shuffled predictions
-This is a way to test the robustness of the predictions by compare the PICRUSt2 output tables with tables based on shuffling the predictions across all amplicon sequence variants (ASVs), a sort of permuation. The script is called `shuffle_predictions.py`; it randomizes the ASV labels for all predicted genomes (so all the same individual predicted genomes are the same - they just are linked to different ASV abundances across samples).
-
-	shuffle_predictions.py -i EC_predicted.tsv.gz \
-                           -o EC_predicted_shuffled \
-                           -r 5 \
-                           -s 131
-
-Where -r specifies how many random replicates to make and -s 131 specifies a random seed so that the same shuffled tables will be output reproducibly if this seed were used again.
-
-The gene family and pathway-level prediction tables can then be generated from these shuffled tables by running the standard PICRUSt2 commands. Below is an example of how to quickly run metagenome_pipeline.py and pathway_pipeline.py on all shuffled tables with a bash loop.
-
-	# Make folders for shuffled output
-	mkdir EC_metagenome_out_shuffled
-	mkdir pathways_out_shuffled
-
-	for i in {1..5}; do
-	    
-	    # Define in and out file paths.
-	    EC_SHUFFLED="EC_predicted_shuffled/EC_predicted_shuf"$i".tsv.gz"
-	    OUT_META="EC_metagenome_out_shuffled/rep"$i
-	    OUT_PATHWAYS="pathways_out_shuffled/rep"$i
-	    
-	    # PICRUSt2 scripts to get prediction abundance tables for gene and pathway levels, respectively.
-	    metagenome_pipeline.py -i ../table.biom -m marker_predicted_and_nsti.tsv.gz -f $EC_SHUFFLED \
-		               -o $OUT_META \
-		               --strat_out
-	    
-	     pathway_pipeline.py -i $OUT_META/pred_metagenome_contrib.tsv.gz \
-		                 -o $OUT_PATHWAYS \
-		                 -p 1
-	done   
-	 
- Note that sh does not recognize {1..5}, this script needs to be run with bash 本 ba.
- 
- These shuffled tables are especially helpful to get a baseline for how the predicted functional data differentiates samples (e.g. based on ordination or differential abundance testing) when the predicted ASV genomes are assigned randomly.
- 
- The ordination etc will be done in R. 
  
 # Summary
  
