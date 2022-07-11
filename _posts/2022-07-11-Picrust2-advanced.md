@@ -58,26 +58,27 @@ The gene family and pathway-level prediction tables can then be generated from t
 	    OUT_PATHWAYS="pathways_out_shuffled/rep"$i
 	    
 	    # PICRUSt2 scripts to get prediction abundance tables for gene and pathway levels, respectively.
-	    metagenome_pipeline.py -i ../table.biom -m marker_predicted_and_nsti.tsv.gz -f $EC_SHUFFLED \
+	    # note that this otu table again cannot have taxaonomy column
+	    metagenome_pipeline.py -i otu_table_total.txt -m marker_predicted_and_nsti.tsv.gz -f $EC_SHUFFLED \
 		               -o $OUT_META \
 		               --strat_out
 	    
 	     pathway_pipeline.py -i $OUT_META/pred_metagenome_contrib.tsv.gz \
 		                 -o $OUT_PATHWAYS \
-		                 -p 1
+		                 -p 12
 	done   
 	 
  Note that sh does not recognize {1..5}, this script needs to be run with bash 本 ba.
  
  These shuffled tables are especially helpful to get a baseline for how the predicted functional data differentiates samples (e.g. based on ordination or differential abundance testing) when the predicted ASV genomes are assigned randomly.
  
- The ordination etc will be done in R. 
+ The ordination etc will be done in R (I used phyloseq). 
  
-# Summary
+ ## Summary
  
- 1. Input file preparing: the taxonomy column needs to be removed from the otu abundance table. the fasta file might need to be rc.
- 2. The stratified table is informative and does not take much longer to generate.
- 3. KEGG pathway mapping is not provided. I will share my code later.
- 4. seqtab_norm.tsv should be used for composition ordination even if no functional prediction is needed since it corrects for 16S gene copy numbers. 
+ 1. Use bash, not sh
+ 2. Note that the otu table required by picrust cannot have taxaonomy column.
+
+ 
  
 
