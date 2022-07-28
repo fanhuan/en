@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to build a kraken2 database from scratch.
+title: How to build a kraken2 database from scratch
 categories: [notes]
 tags: [lab note, liana]
 ---
@@ -69,6 +69,10 @@ It turns out that nothing was masked. `library.fna.masked` is empty. This is tru
 
 # Add customized files
 
+There's not much regulation on the customized files to be added except that 
+1. it needs to be in fasta format
+2. the record.id needs to be in this format: `>seq_id|kraken:taxid|1234567` here 1234567 needs to be the taxID of the sequence you are adding. If the taxID of the sequences is unknown, you can use a taxID that shares the most recent ancestor (for example, another strain under the same species or another species in the same genus) that is not present in your kraken2 database to represent it. You need to take record of couse. 
+
 	for file in dir/*.fna
 	do
 		kraken2-build --add-to-library $file --db kraken2_db
@@ -76,6 +80,20 @@ It turns out that nothing was masked. `library.fna.masked` is empty. This is tru
 
 # Build!
 	$kraken2-build --build --threads n --db kraken2_db
+	
+	Creating sequence ID to taxonomy ID map (step 1)...
+	Sequence ID to taxonomy ID map complete. [4.092s]
+	Estimating required capacity (step 2)...
+	Estimated hash table requirement: 61765191680 bytes
+	Capacity estimation complete. [30m6.427s]
+	Building database files (step 3)...
+	Taxonomy parsed and converted.
+	CHT created with 16 bits reserved for taxid.
+	Completed processing of 93901 sequences, 138676758167 bp
+	Writing data to disk...  complete.
+	Database files completed. [7h48m55.558s]
+	Database construction complete. [Total: 8h19m6.133s]
 
+# OK testing.
 
 
