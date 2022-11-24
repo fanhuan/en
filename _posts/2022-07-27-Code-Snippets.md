@@ -62,6 +62,10 @@ tags: [bash, python, R]
 1. subset data to contain only columns whose names match a condition
 
 		df[ , grepl( "ABC" , names( df ) ) ]	
+		
+2. vectorize any funciton
+
+		vectorized_substr <- base::Vectorize(substr)
 	
 	
 ## ggplot2
