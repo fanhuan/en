@@ -62,9 +62,18 @@ tags: [bash, python, R]
 1. subset data to contain only columns whose names match a condition
 
 		df[ , grepl( "ABC" , names( df ) ) ]	
+		
+2. vectorize any funciton
+
+		vectorized_substr <- base::Vectorize(substr)
 	
 	
 ## ggplot2
+1. beta-diversity
 
-	p2 = plot_ordination(GP1, GP.ord, type="samples", color="SampleType", shape="human") 
-	p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
+		p2 = plot_ordination(GP1, GP.ord, type="samples", color="SampleType", shape="human") 
+		p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
+	
+2. change default shape types
+
+		scale_shape_manual(values=c(3, 16)) 
