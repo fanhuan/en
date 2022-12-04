@@ -42,7 +42,6 @@ Close current terminal and start a new one.
 - fasta of amplicon sequences variants (study_seqs.fna)
 - biom table of the abundance of each ASV across each sample (study_seqs.biom). I don't have this. A tab-delimited table with ASV ids as the first column and sample abundances as all subsequent columns will also work. I will use the latter.
 
-
 ## Options
 
 --stratified: Flag to indicate that stratified tables should be generated at all steps, this can increase run-time but not by a lot.
@@ -50,10 +49,10 @@ Close current terminal and start a new one.
  
 ## Run
 
-	(picrust2)$ picrust2_pipeline.py -s test_rep.fna -i test_otu_table_total.txt -o test_picrust2 -p 12
+	(picrust2)$ picrust2_pipeline.py -s test_rep.fna -i test_otu_table_total.txt -o test_picrust2 -p 12 --stratified
 	Warning - column named "taxonomy" in abundance table - if this corresponds to taxonomic labels this should be removed before running this pipeline.
 
-OK removed. 
+OK remove:
 
 	$ cut -f 1-27 test_otu_table_total.txt > test.otu_table_total.txt
 	$ picrust2_pipeline.py -s test_rep.fna -i test.otu_table_total.txt -o test_picrust2 -p 12
@@ -126,7 +125,7 @@ Folder containing predicted pathway abundances and coverages per-sample, based o
 
 	"Note that KEGG pathways are not supported since KEGG is a closed-source database, but you can input custom pathway mapfiles if you have access. If you are using a custom function database did you mean to set the --no-regroup flag and/or change the default pathways mapfile used?"
 
-However the mapping file from KO numbers to KEGG pathways are provided in `picrust2-2.5.0/picrust2/default_files/pathway_mapfiles/KEGG_*_to_KO.tsv`. Enriched can be done using [ClusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html) fro the Yu Lab. [KASS](https://www.genome.jp/kegg/kaas/) is another option but it starts with fasta, seem to be a waste for redoing the KO assignment. 
+However the mapping file from KO numbers to KEGG pathways are provided in `picrust2-2.5.0/picrust2/default_files/pathway_mapfiles/KEGG_*_to_KO.tsv`. Enrichment can be done using [ClusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html) fro the Yu Lab. [KASS](https://www.genome.jp/kegg/kaas/) is another option but it starts with fasta, seem to be a waste for redoing the KO assignment. 
 
 ## Additional output files
 
