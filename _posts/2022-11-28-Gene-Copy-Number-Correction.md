@@ -148,10 +148,11 @@ Again we run into the reverse-compliment problem since the input study sequences
                     -o pathways_out/path_abun_unstrat_descrip.tsv.gz
 ## Should I tackle KEGG pathway this time?
 
-MetaCyc is supposed to be a good representative for bacteria. However, based on the last plotting, it does not distinguish. Maybe I should read more about how to use the PICRUST2 prediction. But we do need to consolidate those thousands of pathways.
+MetaCyc is supposed to be a good representative for bacteria. However, there are >5000 pathways and it is hard to comprehend. It is possible to summarize based on its [tree structure](https://metacyc.org/META/class-tree?object=Pathways). But I haven't found existing tools. A bit surprised that it is not included in the HUMAnN 3.0 pipeline.
 
-https://metacyc.org/META/class-tree?object=Pathways
+Then I talked to Qiang and he told me about FAPROTAX, which gives a more aggregated functional annotation. I will give it a try. However, picrust2 will still be used for gcn correction.
 
+I will have a separate post for FAPROTAX.
 
 
 
