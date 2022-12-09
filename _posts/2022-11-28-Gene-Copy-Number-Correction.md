@@ -146,6 +146,12 @@ Again we run into the reverse-compliment problem since the input study sequences
 		
 		$ add_descriptions.py -i pathways_out/path_abun_unstrat.tsv.gz -m METACYC \
                     -o pathways_out/path_abun_unstrat_descrip.tsv.gz
+                    
+# GCN correction.
+The corrected otu table is this:
+
+- EC_metagenome_out/seqtab_norm.tsv.gz: otu table normalized by predicted 16S copy number abundances. Because different organisms contain different 16S gene copy numbers (GCNs), sequence variant counts are biased towards clades with greater GCNs. Therefore this is usually considered more accurate than the input otu table (raw call). The GCNs info is stored at picrust2-2.5.0/picrust2/default_files/prokaryotic/16S.txt.gz. The table has nothing to do with function prediction. This file is identical to KO_metagenome_out/seqtab_norm.tsv.gz.
+
 ## Should I tackle KEGG pathway this time?
 
 MetaCyc is supposed to be a good representative for bacteria. However, there are >5000 pathways and it is hard to comprehend. It is possible to summarize based on its [tree structure](https://metacyc.org/META/class-tree?object=Pathways). But I haven't found existing tools. A bit surprised that it is not included in the HUMAnN 3.0 pipeline.
