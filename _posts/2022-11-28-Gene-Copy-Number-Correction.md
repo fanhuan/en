@@ -142,7 +142,7 @@ OK now run picrust2:
 
 Again we run into the reverse-compliment problem since the input study sequences need to be on the positive strand. This time I also ran into a problem where the sequence from one record spread into multiple lines (line breaks) but I've already updated the complement.py script.
 
-		$ python ~/GitHub/script/complement.py -i test_rep.fna > test_rep_rc.fna
+		$ python ~/GitHub/script/complement.py -i test_rep.fna -o test_rep_rc.fna
 		
 		$ add_descriptions.py -i pathways_out/path_abun_unstrat.tsv.gz -m METACYC \
                     -o pathways_out/path_abun_unstrat_descrip.tsv.gz
