@@ -1,3 +1,11 @@
+---
+layout: post
+title: samtools flagstat
+categories: [data analysis]
+tags: [bioinformatics]
+---
+
+
 I'd like to compare two assemblies. Besides the normal things such as N50, N90, L50 etc, I'd like to see how my reads mapped to them, especially where they are properly mapped. I am using bwa, but for some reason it does not give me a good stats on the mapping as hisat2 does. Therefore I have to take an extra step, using `samtools flagstat` to evaluate the resulting bams. The output looks like this (real numbers from a bam I have):
 
 ### 1. **306,850,015 + 0 in total (QC-passed reads + QC-failed reads)**
