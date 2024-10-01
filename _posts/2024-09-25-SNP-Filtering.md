@@ -1,9 +1,11 @@
 ---
 layout: post
 title: SNP Filtering: Basic Principles
-categories: [GWAS]
-tags: [Bioinformatics][GWAS]
+categories: [notes]
+tags: [Bioinformatics]
 ---
+
+
 
 With high sequencing coverage, big genomes and big samples size, you can easily get dozens of millions of SNPs. Of course you are not going to work with all of them. Therefore filtering becomes very important. In this article we will talk about some basic principles for SNP filter, how to do it using `plink` which is fast and versatile, and discuss some examples or tutorials on how people are doing it in the field right now.
 
