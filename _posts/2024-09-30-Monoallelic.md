@@ -1,8 +1,8 @@
 ---
 layout: post
-title: What does "MONOELLEIC" mean in a GLnexus generated VCF file
+title: What does MONOELLEIC mean in a GLnexus generated VCF file
 categories: [notes]
-tags: [bioinformatics]
+tags: [GWAS]
 ---
 
 
