@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Genomic Estimated Breeding Values
-categories: [data analysis]
-tags: [stats][GWAS]
+categories: [notes]
+tags: [GWAS]
 ---
 
 OK! So Genomic Estimated Breeding Value(GEBV) is an very important measurement in the molecular breeding world. Basically it is the best prediction you can have for the penotypic performance of an individual based on its genenic makeup (and other fixed effects if any in the model, such as sex). Firstly three level of designs from small to big:
