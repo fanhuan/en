@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ordination: nMDS, PCoA, CA
-categories: [analysis]
+categories: [notes]
 tags: [stats]
 ---
 
