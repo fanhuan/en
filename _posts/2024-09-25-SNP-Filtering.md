@@ -2,7 +2,7 @@
 layout: post
 title: SNP Filtering: Basic Principles
 categories: [notes]
-tags: [Bioinformatics]
+tags: [GWAS]
 ---
 
 
