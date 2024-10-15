@@ -2,7 +2,7 @@
 layout: post
 title: Variance, Covariance, Correlation, Variation and Covariation
 categories: [notes]
-tags: [GWAS][stats]
+tags: [stats]
 ---
 
 
