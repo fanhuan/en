@@ -76,3 +76,5 @@ There are two ways to construct the random effect part for predicting the **Geno
 
 ### Conclusion:
 The **GEBV** predicted using the **GRM** and using the **SNP matrix** will generally be similar but **not necessarily identical**. The GRM provides a more aggregate, efficient method for modeling the additive genetic effect, while the SNP matrix gives more detailed insights into individual SNP contributions. The choice between the two depends on whether you want to capture the total genetic relationship (GRM) or the individual SNP effects (SNP matrix).
+
+No matter left mixed model or right mixed model, GEBV is always the random effect part of the prediction.
