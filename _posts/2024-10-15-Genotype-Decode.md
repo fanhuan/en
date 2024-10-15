@@ -2,7 +2,7 @@
 layout: post
 title: Genotype Decode
 categories: [notes]
-tags: [GWAS][stats]
+tags: [GWAS]
 ---
 
 
