@@ -1,9 +1,11 @@
 ---
 layout: post
-title: Ordination: nMDS, PCoA, CA
+title: Ordination - nMDS, PCoA, CA
 categories: [notes]
 tags: [stats]
 ---
+
+
 
 For some reason nMDS always separates the samples nicer than other ordination methods. Therefore I use it a lot. However it is hard to see the variance explained by each nMDS vectors. Therefore one should always consider a principle component method first (such as PCA, PCoA or CA).
 
