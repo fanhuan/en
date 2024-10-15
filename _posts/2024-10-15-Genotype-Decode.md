@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Matrix
+title: Genotype Decode
 categories: [notes]
 tags: [GWAS][stats]
 ---
