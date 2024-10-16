@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SNP Filtering: Basic Principles
+title: SNP Filtering - Basic Principles
 categories: [notes]
 tags: [GWAS]
 ---
