@@ -33,11 +33,11 @@ One apparent distinction is grey lines. **"Gray records indicate  sequencing cov
 
 So there is only one problem, how do we understand the first gray line in Carol's gVCF. It says `END=111`, however there is a mutation at 106. This did not happen in the examples given in the GATK gVCF format doc. I checked one of my gVCF files and it also did not happen. Let's treat it as a typo for now and can come back later when it is relevant. Here let's look at a chuck of gVCF file with complete records:
 
-![gVCF example](/home/huan/GitHub/en/images/gVCF.png)
+![img](/home/huan/GitHub/en/images/gVCF.png)
 
 As you can see in the mapping file below, there is no variant called, but any location with possible mutations were document, e.g. line 2, chr1_27 is where the red 'T' is. 
 
-![image-20240930132842493](/home/huan/GitHub/en/images/bam_view.png)
+![img](/home/huan/GitHub/en/images/bam_view.png)
 
 In my merged pVCF file, there are also MONOALLELLIC sites. One of them is at chr1_10758. It looks like: 
 
