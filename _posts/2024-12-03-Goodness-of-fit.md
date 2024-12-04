@@ -14,7 +14,7 @@ OK, here is what Wiki says about goodness of fit.
 
 So to paraphrase, the goodness of fit is a way to evaluate statistical models, and it focuses on how well the model (expectations) fits the observations. For example, R2 is a goodness-of-fit measure. This led me to think what other ways of evaluating statistical models could be. Recalling the steps we take after constructing a linear model, there are diagnostic tests (residual checks), model comparison, significance of coefficients, etc. Here is a summary table from ChatGPT:
 
-![img](https://fanhuan.github.io/en/model_evaluation.png) 
+![img](https://fanhuan.github.io/en/images/model_evaluation.png) 
 
 However, as you can see, nothing was mentioned about the significance of coefficients. When I ask chatGPT, it says: "Testing whether a coefficient in a linear regression model is significant is not typically classified as a type of model evaluation. Instead, it is considered part of inference or hypothesis testing about the relationships between variables in the model." Oh my. Inference.
 
@@ -41,7 +41,7 @@ Before we can evaluate whether the predictors are useful for the model, we need 
 
 Then I asked ChatGPT to give me a more comprehensive table:
 
-![img](https://fanhuan.github.io/en/parameter_estimation.png)
+![img](https://fanhuan.github.io/en/images/parameter_estimation.png)
 
 
 
