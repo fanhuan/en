@@ -2,7 +2,7 @@
 layout: post
 title: Sequencing effort for metagenomic studies
 categories: [notes]
-tags: [Metagenome][Bioinformatician FAQ]
+tags: [Metagenomics]
 ---
 
 	"How much sequencing should I get for each sample?" asked the experimental scientist.

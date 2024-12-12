@@ -2,7 +2,7 @@
 layout: post
 title:  The IT Crowd
 categories: [notes]
-tags: [IT][Linux]
+tags: [linux]
 ---
 
 	"Oh you are a data scientist! Can you fix my computer?"
