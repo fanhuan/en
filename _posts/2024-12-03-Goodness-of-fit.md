@@ -18,6 +18,10 @@ So to paraphrase, the goodness of fit is a way to evaluate statistical models, a
 
 However, as you can see, nothing was mentioned about the significance of coefficients. When I ask chatGPT, it says: "Testing whether a coefficient in a linear regression model is significant is not typically classified as a type of model evaluation. Instead, it is considered part of inference or hypothesis testing about the relationships between variables in the model." Oh my. Inference.
 
+# Brian's understand of inference
+
+When I was taking [JHU's Data Science Specialization on Coursera](https://www.coursera.org/specializations/jhu-data-science#courses), one of the course is __Statistical inference__. It happens after __Reproducible Research__ and before __Regression Models__. In the beginning of the course, Brian Caffo defined it as `the process of drawing formal conclusions from data.`, which is further defined as `settings where one wants to infer facts about a population using noisy statistical data where uncertainty must be accounted for`. Not very conclusive. Later in the course we talked about probability, conditional probability, expectations, variance, common distributions, asymptopia (law of large numbers and central limit thereom), t confidence intervals, hypothesis testing, pValues, power, multiple testing and resampling. So some basic statistical concepts. 
+
 # Kyle's understand of inference.
 
 In [Kyle's](https://communityecologyconservation.com/people/) advanced statistics [course](https://en.xtbg.ac.cn/at/cs/202405/t20240521_663204.html) where I co-teach, he did mention about inference and back then I did pause to contemplate on this word. On the slide for __Inference__ he says: 
@@ -42,6 +46,10 @@ Before we can evaluate whether the predictors are useful for the model, we need 
 Then I asked ChatGPT to give me a more comprehensive table:
 
 ![img](https://fanhuan.github.io/en/images/parameter_estimation.png)
+
+
+
+
 
 
 
