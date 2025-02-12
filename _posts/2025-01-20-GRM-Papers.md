@@ -7,11 +7,9 @@ tags: [GWAS]
 
 ## 0: Unrelated individuals
 
-In a [previous post](https://fanhuan.github.io/en/2024/12/12/GRM/) we talked about how GRM is calcuated in Proferssor Yang Jian's landmark [2010 NG paper](https://www.nature.com/articles/ng.608). It is for unrelated individuals, where it is assumed that the average relationship between all pairs of individuals in 0 and the average relationships of an individual with itself is 1 (see the last paragraph of the __Statistical framework__ of the __ONLINE METHODS__ section). The relationship of an individual with itself provides an unbiased estimate of the inbreeding coefficient (F)， with a mean of 1+F and variance of 1 when F=0. This means we could back calculate the inbreeding coeffeicnts from the diagnols. 
+In a [previous post](https://fanhuan.github.io/en/2024/12/12/GRM/) we talked about how GRM is calcuated in Proferssor Yang Jian's landmark [2010 NG paper](https://www.nature.com/articles/ng.608). It is for unrelated individuals, where it is assumed that the average relationship between all pairs of individuals in 0 and the average relationships of an individual with itself is 1 (see the last paragraph of the __Statistical framework__ of the __ONLINE METHODS__ section). The relationship of an individual with itself provides an unbiased estimate of the inbreeding coefficient (F)， with a mean of 1+F and variance of 1 when F=0. F for each locus is one minus the observed frequency of heterozygotes over that expected from Hardy–Weinberg equilibrium. When more He is observed than expected, F<0, outbreeding; when less He is observed than expected, 0<F<1, inbreed. Then the observed equals the expected, F=0, thus E(1+F)=1. Therefore the higher number in GRM on the diagnols for an individual, the higher degree of heterozygosity.  
 
-
-There is a slightly differen flavor for this version 
-
+There is a slightly differen flavor for this version: 
 
 > --make-grm-alg 0
 > The default value is 0, and the GRM is calculated using the equation sum{[(xij - 2pi)(xik - 2pi)] / [2pi(1-pi)]} as described in Yang et al. 2010 Nat Genet. If the value = 1, the GRM will be calculated using the equation sum[(xij - 2pi)(xik - 2pi)] / sum[2pi(1-pi)].
