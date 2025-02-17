@@ -40,7 +40,7 @@ there would be 6 different groupings:
 
 meaning, the arrangement within each group should be cancled/devided, therefore the formular is 4!/(2! * 2! * 0!), or in general term, it would be n!/(k1!k2!...km!) for each term. 
 
-Now let's think about a special case where m = 2, meaning there are always just 2-1=1 bar, the bar can be placed at n+1 different positions, when it is placed at the kth position (let the bar be in front all the stars as 0), the coefficient would be n!/(k! * (n-k)!), which is actually $\binom{n}{k}$, the binomial coefficient 
+Now let's think about a special case where m = 2, meaning there are always just 2-1=1 bar, the bar can be placed at n+1 different positions, when it is placed at the kth position (let the bar be in front all the stars as 0), the coefficient would be n!/(k! * (n-k)!), which is actually (n choose k), the binomial coefficient 
 
 
 
