@@ -5,7 +5,7 @@ categories: [notes]
 tags: [ML]
 ---
 
-While checking on the generalization of [HWE](https://fanhuan.github.io/en/2024/12/02/HWE/) for more than two alleles, I had to refresh my self on multinomial expansion. For any positive integer m and any non-negative integer n, the multinomial theorem describes how a sum with __m__ terms expands when raised to the __nth__ power. I do remember that the sum of exponents in each term needs to be the same as the original nth power, but I forgot on how to calculate the coefficient. 
+While checking on the generalization of [HWE](https://fanhuan.github.io/en/2024/12/02/HWE/), I had to refresh my memory on multinomial expansion. For any positive integer m and any non-negative integer n, the multinomial theorem describes how a sum with __m__ terms expands when raised to the __nth__ power. I do remember that the sum of exponents in each term needs to be the same as the original nth power, but I forgot on how to calculate the coefficient. 
 
 Then I came across this method called __stars and bars__, which is used to determing how many terms an multinomial expansion has. I don't remember when or whether I've learnt this method in school, but in Chinese it is called “隔板法”（https://zh.wikipedia.org/zh-sg/%E9%9A%94%E6%9D%BF%E6%B3%95）. It is solving for the number of combinations of nonnegative integer indices `k1` through `km` such that the sum of all `ki` is `n`. Let's consider the case where we have 3 terms, a, b and c, and we want to expand to the power of 4, (a+b+c)^4. So in this case, n=4 and m=3, where we need to split 4 stars into 3 groups, with 0-4 starts in each group. How? We only need 3-1=2 bars to put amongst those starts, and they will be separated into 3 groups. 
 
@@ -40,11 +40,11 @@ there would be 6 different groupings:
 
 meaning, the arrangement within each group should be cancled/devided, therefore the formular is 4!/(2! * 2! * 0!), or in general term, it would be n!/(k1!k2!...km!) for each term. 
 
-Now let's think about a special case where m = 2, meaning there are always just 2-1=1 bar, the bar can be placed at n+1 different positions, when it is placed at the kth position (let the bar be in front all the stars as 0), the coefficient would be n!/(k! * (n-k)!), which is actually (n choose k), the binomial coefficient 
+Now let's think about a special case where m = 2, meaning there are always just 2-1=1 bar, the bar can be placed at n+1 different positions, when it is placed at the kth position (let the bar be in front all the stars as 0), the coefficient would be n!/(k! * (n-k)!), which is actually (n choose k), the binomial coefficient. 
 
+Now thinking back on the generalization of HWE, there can be more than two alleles at one locus (more bars), or more than two sets of chromosomes (more stars), i.e. polypoidy, or a combination of both. But now we have no problem for expansion in any case. 
 
-
-I hope this post helps you to understand the multinomial expansion. 
+I hope this post helps you to understand the multinomial expansion and generalization of HWE.
 
 
 
