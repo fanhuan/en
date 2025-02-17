@@ -11,11 +11,11 @@ Then I came across this method called __stars and bars__, which is used to deter
 
 It could be something like:
 
-**\|**\| (a^2 * b^2 * c^0)
+**\\|\\*\\*\\| (a^2 * b^2 * c^0)
 
 or
 
-|*|*** (a^0 * b^1 * c^3)
+\\|\\*\\|*** (a^0 * b^1 * c^3)
 
 As you can see the number of combination would be n + (m-1) choose (m-1), i.e, there are altogether n+m-1 positions, and we need to choose (m-1) to place the bars, simple. In our example, it would be 6 choose 2, which is 6!/(4! * 2!) = 15, and there are indeed 15 different combinations such as a^4 or b * c^3.
 
