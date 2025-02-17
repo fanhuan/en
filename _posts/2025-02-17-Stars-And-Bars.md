@@ -11,7 +11,7 @@ Then I came across this method called __stars and bars__, which is used to deter
 
 It could be something like:
 
-**\\|\\*\\*\\| (a^2 * b^2 * c^0)
+**\|**\| (a^2 * b^2 * c^0)
 
 or
 
