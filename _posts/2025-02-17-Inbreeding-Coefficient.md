@@ -7,7 +7,7 @@ tags: [ML]
 
 # Inbreeding coefficient
 
-The inbreeding coefficient is usually referred to as __F__. 
+The inbreeding coefficient is usually referred to as __F__. As we explained in the [IBD vs. IBS]() post, F is actually the probability of identity-by-decent (IBD) of two alleles. If the two alleles are in the same diploid individual, then F is the inbreeding coefficient of the individual at this locus.  
 
 
 
