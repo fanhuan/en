@@ -7,25 +7,13 @@ tags: [PG]
 
 # IBD
 
-Identity-by-descent, also known as identical-by-descent. In [Speed and Balding 2015](https://doi.org/10.1038/nrg3821), it is defined as
+Identity-by-descent, also known as identical-by-descent. In [Speed and Balding 2015](https://doi.org/10.1038/nrg3821), it is defined as the __"phenomenon whereby two individuals share a genomic region as a result of inheritance from a recent common ancester, where 'recent' can mean from an ancestor in a given pedigree, or with on intervening mutations event or with no intervening recombination event."__
 
-```
-The phenomenon whereby two individuals share a genomic region as a result of inheritance from a recent common ancester, where 'recent' can mean from an ancestor in a given pedigree, or with on intervening mutations event or with no intervening recombination event.
-```
+In another review paper, [Powell 2010](https://www.nature.com/articles/nrg2865) defined it as __"alleles that are descended from a common ancestor in a base population"__. You can see the two definitions are slightly different. The former uses __"genomic region"__ as the unit whereas the latter uses __"alleles"__. Alleles are versions of genes, where as "genomic region" can be non-genic, also can be of any length, so the former is more generic. Also, the latter emphasized on the concept of __"base population"__. The probability of IBD is sometimes referred to as __F__, and it __"has to be defined with respect to a base (reference) population; that is, the two alleles are descended from the same ancestral allele in the base population.__" Why so? As you can imaging, if an allele is very rare in the base population, then the possibility of IBD is very high. On the contrary, if an allele is very prominant in the base population, two individuals having the same allele could be due to chance. See another [post]() on how to determine the base population. 
 
-In another review paper, [Powell 2010](https://www.nature.com/articles/nrg2865) defined it as "alleles that are descended from a common ancestor in a base population". You can see the two definitions are slightly different. The former uses "genomic region" as the unit whereas the latter uses "alleles". Alleles are versions of genes, where as "genomic region" can be non-genic, also can be of any length, so the former is more generic.
+"If the two alleles are in the same diploid individual then F is the __inbreeding coefficient__ of the individual at this locus." See more on how IC is calculated in [this post](http://fanhuan.github.io/en/2025/02/17/Inbreeding-Coefficient/).
 
-This concept is tightly linked to 
-
-```
-Traditional measures of relatedness, which are based on probabilities of IBD from common ancestors within a pedigree, depend on the choice of pedigree.
-```
-
-The probability of IBD is sometimes referred to as __F__. "If the two alleles are in the same diploid individual then F is the __inbreeding coefficient__ of the individual at this locus."
-
-[A matrix](fanhuan.github.io/en/2024/10/14/A-Matrix/) is based on IBD. 
-
-
+The probability of IBD ,or __F__, is tightly linked to __"Traditional measures of relatedness, which are based on probabilities of IBD from common ancestors within a pedigree, depend on the choice of pedigree".__ [A matrix](fanhuan.github.io/en/2024/10/14/A-Matrix/) is based on IBD. 
 
 # IBS
 
