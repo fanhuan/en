@@ -9,6 +9,11 @@ In the `.fam` file prepared for `plink` , there are two columns for you to speci
 
 Why do we need founders? Because only they are included in some calculations such as `minor allele frequencies/counts` or `Hardy-Weinberg equilibrium tests`, both related to the concept of __base population__.
 
+Traditionally, the probability that two alleles are IBD was most often calculated from a known pedigree and so the individuals at the top of the pedigree (the founders) form a natural base population, where the founders themselves are unrelated.
+
+
+
 The probability that two alleles are IBD has to be defined with respect to a base (reference) population; that is, the two alleles are descended from the same ancestral allele in the base population.
 
 
+The point of coalescence is the most recent common ancestor. The status of alleles there is in the ancestral state.

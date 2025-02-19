@@ -13,12 +13,17 @@ In another review paper, [Powell 2010](https://www.nature.com/articles/nrg2865) 
 
 "If the two alleles are in the same diploid individual then F is the __inbreeding coefficient__ of the individual at this locus." See more on how IC is calculated in [this post](http://fanhuan.github.io/en/2025/02/17/Inbreeding-Coefficient/).
 
-The probability of IBD ,or __F__, is tightly linked to __"Traditional measures of relatedness, which are based on probabilities of IBD from common ancestors within a pedigree, depend on the choice of pedigree".__ [A matrix](fanhuan.github.io/en/2024/10/14/A-Matrix/) is based on IBD. 
+The probability of IBD ,or __F__, is tightly linked to __"Traditional measures of relatedness, which are based on probabilities of IBD from common ancestors within a pedigree, depend on the choice of pedigree".__ If the pedigree is known, the expected IBD is [A matrix](fanhuan.github.io/en/2024/10/14/A-Matrix/). When the pedigree is unknown, IBD relationships are estimated from IBS. 
 
 # IBS
 
 Identity-by-state, also known as identical-by-state. This concept is relatively simple. It just means that two things, be it alleles or genomic regions, they are the same in two different individuals, iregardless whether it is IBD. This sounds familiar right? The relationship between IBD and IBS is like the one between orthologs and homologs. 
 
-IBS is waht we see in the current dataset, and is usually used to calculate the [G matrix](http://fanhuan.github.io/en/2024/12/12/GRM/) with unknown pedigree.
+IBS is waht we see in the current dataset, and is usually used to calculate the [G matrix](http://fanhuan.github.io/en/2024/12/12/GRM/) with unknown pedigree. As you can see this can lead to erroneous inference because a consistent base population is not used. 
 
+There we borrow an illustration from [Powell 2010]((https://www.nature.com/articles/nrg2865) to demonstrate the difference between IDB and IBS.
+
+![img](https://fanhuan.github.io/en/images/Powell2010.png)
+
+So in this  figure, as long as the letter is the same, they are IBS, so all the Gs and all the Ts are IBS respectively. However, you also need to have the same background color to be IBD. For example, C1 and C2 are IBD, B3 and B4 are not IBD, C4 and C5 are not IBD either. Note that this relationship is usually considered within the same generation, not crossing generations. Another thing to note in this figure is that the Base population used for the estimation of IBD coefficients should be B1, B2, B3 and B4, not the current C1 to C5. This is why you need to specify the founders or any know pedigree info in the .fam file. I wonder whether `gcta` takes this info? I tried but it does not :(
 
