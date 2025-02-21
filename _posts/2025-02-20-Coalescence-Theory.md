@@ -5,11 +5,11 @@ categories: [notes]
 tags: [PG]
 ---
 
-When I was doing some reading on IBD, I ran into this passage in [Powell 2010](https://www.nature.com/articles/nrg2865)
+When I was doing some reading on IBD, I ran into this passage in [Powell 2010](https://www.nature.com/articles/nrg2865).
 
-"Traditionally, the probability that two alleles are IBD was most often calculated from a known pedigree and so the individuals at the top of the pedigree (the founders) form a natural base population. However, it is becoming common to use data on genetic markers such as SNPs to estimate the probability of being IBD without reference to a known pedigree and, in this case, there is no obvious base population. Moreover, the concept of IBD seems to conflict with the well-established coalescence theory in which all alleles are descended from a common ancestor but at different times in the past."
+__"Traditionally, the probability that two alleles are IBD was most often calculated from a known pedigree and so the individuals at the top of the pedigree (the founders) form a natural base population. However, it is becoming common to use data on genetic markers such as SNPs to estimate the probability of being IBD without reference to a known pedigree and, in this case, there is no obvious base population. Moreover, the concept of IBD seems to conflict with the well-established coalescence theory in which all alleles are descended from a common ancestor but at different times in the past."__
 
-Then I was a bit lost. Why are they in conflict? Then I asked ChatGPT and this is the answer:
+Then I was a bit lost. Why are they in conflict? I asked ChatGPT and this is the answer:
 
 The seeming conflict comes from how “identity by descent” (IBD) and coalescence theory define “common ancestry” over different time scales and with different reference points.
 
