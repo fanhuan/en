@@ -65,3 +65,12 @@ In the case of **Evo**, it is designed to capture two key aspects of biology:
 ![img](https://fanhuan.github.io/en/images/Evo2024.png)
 
 As a foundation model, Evo can be fine-tuned for various biological tasks, such as predicting gene functions, designing proteins, or analyzing evolutionary relationships, making it a versatile tool for computational biology.
+
+# Update from Evo2
+
+1. Evo is trained on prokaryotes and phage genomes. Evo2 is trained on "a highly curated genomic atlas spanning __all domains of life__". 
+2. Training data size: 2.7 million vs. 9.3 trillion DNA base pairs.
+3. Model parameter size: 7B(Evo) vs 7B and 40B (Evo2). Note that GPT3 has 175B. The differences between them is that the 7B parameters trained on 2.4 trillion tokens and a full version at 40B parameters trained on 9.3 trillion tokens.
+4. Token context window1 million: 131Kb vs 1Mb, both at single-nucleotide resolution. This number is 2048 for GPT3.
+5. Evo 2 learns from __DNA sequence alone__ to accurately predict the functional impacts of genetic variation.
+
