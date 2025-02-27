@@ -14,3 +14,14 @@ Specs of my desktop.
 - GPU(`lspci | grep -i vga`): two RTX A4500, each has 20 GB of GDDR6 memory.
 
 I guess I will try the smallest one (1.58-bit, 131GB).
+
+_____________________________________________________________________________________________________
+
+That was Feb 4th, 2025. Today is Feb 27, 2025, I have discovered [LM Studio](https://lmstudio.ai/), end of story... 
+
+OK a few more tips:
+
+1. Add the `--no-sandbox` flag to bypass the sandbox requirement (use cautiously, as this reduces security) if you run into the SUID sandbox error.
+2. Remember to eject the model when you are done running it to free up the memory.
+
+Have fun! 

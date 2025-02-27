@@ -69,8 +69,11 @@ As a foundation model, Evo can be fine-tuned for various biological tasks, such 
 # Update from Evo2
 
 1. Evo is trained on prokaryotes and phage genomes. Evo2 is trained on "a highly curated genomic atlas spanning __all domains of life__". 
-2. Training data size: 2.7 million vs. 9.3 trillion DNA base pairs.
-3. Model parameter size: 7B(Evo) vs 7B and 40B (Evo2). Note that GPT3 has 175B. The differences between them is that the 7B parameters trained on 2.4 trillion tokens and a full version at 40B parameters trained on 9.3 trillion tokens.
+
+2. Pretraining data set: 300 billion nt (from 2.7 million genomes) vs. 9.3 (abstract) or 8.84 (methods) trillion nt. openGenome2 (the one Evo 2 was trained on) included a 33% expansion of representative prokaryotic genomes from 85,205 to 113,379 (357 billion nucleotides), a total of 6.98 trillion nucleotides from eukaryotic genomes, 854 billion nucleotides of non-redundant metagenomic sequencing data, 2.82 billion nucleotides of organelle genomes, and 602 billion nucleotides of subsets of eukaryotic sequence data to focus on likely functional regions of the genomes by focusing on different windows around coding genes. This means eukaryotic genomes takes about 80% of the pretraining dataset. 
+
+ vs. 9.3 trillion DNA base pairs.
+3. Model parameter size: 7B(Evo) vs 7B and 40B (Evo2). The differences between the two Evo2 model is that the 7B parameters trained on 2.4 trillion tokens and a full  version at 40B parameters trained on 9.3 trillion tokens. Note that GPT3 has 175B. 
 4. Token context window1 million: 131Kb vs 1Mb, both at single-nucleotide resolution. This number is 2048 for GPT3.
 5. Evo 2 learns from __DNA sequence alone__ to accurately predict the functional impacts of genetic variation.
 

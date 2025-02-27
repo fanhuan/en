@@ -47,7 +47,7 @@ Then I asked ChatGPT to give me a more comprehensive table:
 
 ![img](https://fanhuan.github.io/en/images/parameter_estimation.png)
 
-
+Andrej's understanding of inference.
 
 
 
