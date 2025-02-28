@@ -16,7 +16,7 @@ Now that we already know variance and covariance, now we can introduce the varia
 [ Var(X)    Cov(X,Y) ]
 [ Cov(X,Y)    Var(Y) ]
 
-If there are n variables, it will be a n by n matrix where the variances of each variable is on the diagonal, and the off-diagonals are the covaraince of the i-th and j-th variables in the vector. 
+If there are n variables, it will be a n by n matrix where the variances of each variable is on the diagonal, and the off-diagonals are the covaraince of the _i-th_ and _j-th_ variables in the vector. 
 
 __Correlation__ is __standardized covariance__. folumar of correlation is cor(y1, y2) = cov(y1, y2)/sqrt(var(y1)var(y2)). If the variables (y1, and y2) are already normalized (mean = 0, sd=1), then cor(y1, y2) = cov(y1, y2). Note that in simple linear regression: R2=cor(y, y_hat)^2. If you have a vcv (variance covariance) matrix, you can turn it into a correlation matrix via `stats::cov2cor`.
 
