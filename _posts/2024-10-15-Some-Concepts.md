@@ -12,6 +12,12 @@ There is concept called the __coefficient of variation__. It is calculated as th
 
 __Covariance__ measures the degree to which __two variables__ change together. It indicates whether two variables tend to increase or decrease in tandem. Cov(X,Y)=1/n∑​(xi​−xmean)(yi​−mean​). You can see that if Xi and Yi are both greater or smaller than their means, the product will be positive. If the trend is different, it would be negative and the Cov(X,Y) will be smaller. 
 
+Now that we already know variance and covariance, now we can introduce the variance of a vector (__multiple variables__), which is actually a __matrix__. Let's still consider the case with two variables, its variance will look like:  
+[ Var(X)    Cov(X,Y) ]
+[ Cov(X,Y)    Var(Y) ]
+
+If there are n variables, it will be a n by n matrix where the variances of each variable is on the diagonal, and the off-diagonals are the covaraince of the i-th and j-th variables in the vector. 
+
 __Correlation__ is __standardized covariance__. folumar of correlation is cor(y1, y2) = cov(y1, y2)/sqrt(var(y1)var(y2)). If the variables (y1, and y2) are already normalized (mean = 0, sd=1), then cor(y1, y2) = cov(y1, y2). Note that in simple linear regression: R2=cor(y, y_hat)^2. If you have a vcv (variance covariance) matrix, you can turn it into a correlation matrix via `stats::cov2cor`.
 
 Both __variation and __covariation__ are broader terms comparing to __variance__ and __covariance__, which are precise statistic terms with defined calculation equations.

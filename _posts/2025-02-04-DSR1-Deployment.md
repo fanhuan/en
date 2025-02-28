@@ -23,7 +23,8 @@ OK a few more tips:
 
 1. Add the `--no-sandbox` flag to bypass the sandbox requirement (use cautiously, as this reduces security) if you run into the SUID sandbox error.
 2. Remember to eject the model when you are done running it to free up the memory.
+3. It is much slower than the website in my case...
 
 Who would know that one day when you say __LM__ it refers to __language models__ (or __large models?__) instead of __linear models__...
 
-Have fun! 
+Have fun! No more "The server is busy. Please try again later."

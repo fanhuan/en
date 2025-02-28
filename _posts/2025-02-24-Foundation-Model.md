@@ -35,12 +35,13 @@ In the context of this paper, a **foundation model** refers to a large, general-
      - Also developed by OpenAI, DALL·E generates images from textual descriptions, demonstrating the ability to combine vision and language understanding.
 
 3. **Biology and Bioinformatics**:
-   - **AlphaFold**:
-     - Developed by DeepMind, AlphaFold predicts protein structures from amino acid sequences, revolutionizing structural biology.
-   - **ESM (Evolutionary Scale Modeling)**:
-     - Developed by Meta AI, ESM models are trained on protein sequences to predict structure, function, and evolutionary relationships.
-   - **Evo**:
-     - Evo is a foundation model designed to capture the multimodality of the central dogma (DNA → RNA → protein) and the multiscale nature of evolution. It can likely be applied to tasks like gene function prediction, protein design, and evolutionary analysis.
+   - **Protein Models**:
+     - __AlphaFold__: Developed by DeepMind, AlphaFold predicts protein structures from amino acid sequences, revolutionizing structural biology.
+     - __ESM__ (Evolutionary Scale Modeling): Developed by Meta AI, ESM models are trained on protein sequences to predict structure, function, and evolutionary relationships.
+   - **DNA Models**:
+     - __DNABERT__ 
+     - __NT__ (Nucleotide Transfoermer)
+     - __Evo__: Evo is a foundation model designed to capture the multimodality of the central dogma (DNA → RNA → protein) and the multiscale nature of evolution. It can likely be applied to tasks like gene function prediction, protein design, and evolutionary analysis. Evo2 is just released and eukaryotic genomes are included in the training this time.
 
 4. **Multimodal Models**:
    - **Flamingo**:
@@ -71,6 +72,10 @@ As a foundation model, Evo can be fine-tuned for various biological tasks, such 
 1. Evo is trained on prokaryotes and phage genomes. Evo2 is trained on "a highly curated genomic atlas spanning __all domains of life__". 
 
 2. Pretraining data set: 300 billion nt (from 2.7 million genomes) vs. 9.3 (abstract) or 8.84 (methods) trillion nt. openGenome2 (the one Evo 2 was trained on) included a 33% expansion of representative prokaryotic genomes from 85,205 to 113,379 (357 billion nucleotides), a total of 6.98 trillion nucleotides from eukaryotic genomes, 854 billion nucleotides of non-redundant metagenomic sequencing data, 2.82 billion nucleotides of organelle genomes, and 602 billion nucleotides of subsets of eukaryotic sequence data to focus on likely functional regions of the genomes by focusing on different windows around coding genes. This means eukaryotic genomes takes about 80% of the pretraining dataset. 
+
+Let's take a closer look on how the eukaryotic genomes were chosen:
+
+
 
  vs. 9.3 trillion DNA base pairs.
 3. Model parameter size: 7B(Evo) vs 7B and 40B (Evo2). The differences between the two Evo2 model is that the 7B parameters trained on 2.4 trillion tokens and a full  version at 40B parameters trained on 9.3 trillion tokens. Note that GPT3 has 175B. 

@@ -13,20 +13,20 @@ What are we talking about when we talk about the genetic architecture of a compl
 
 Genomic Estimated Breeding Value(GEBV) is related to the first point. It is an very important measurement in the molecular breeding world. Basically it is the best prediction you can have for the penotypic performance of an individual based on its genenic makeup (and other fixed effects if any in the model, such as sex). Firstly three level of designs from small to big:
 
-1. Pedigree: clear relationships within Families represented by a family-tree.  
+- __Pedigree__: clear relationships within Families represented by a family-tree.  
 
-2. Family: a group of individuals with a degree of genetic relatedness, such as parents and their offspring, or siblings, but might not have a clear family-tree, only some pedigree structure.
+- __Family__: a group of individuals with a degree of genetic relatedness, such as parents and their offspring, or siblings, but might not have a clear family-tree, only some pedigree structure.
 
-3. Population: a much bigger concept than family and no pedigree structure (the relatedness can be inferred from DNA markers though).
+- __Population__: a much bigger concept than family and no pedigree structure (the relatedness can be inferred from DNA markers though).
 
 Things that might influence phenotypes (explainatory variables):
 
 1. environment 
 2. fixed effect such as gender, country, year of birth)
-2. additive gene action: the total effect of a particular trait is the sum of the individual effects of __alleles__ at different loci. There are no interactions between alleles at different loci (no __epistasis__) or between multiple alleles at the same locus (no dominance).
-3. dominance: interactions between multiple alleles at the same locus (Aa and AA has the same trait, which is not additive).
-4. epistasis: interaction between different loci
-5. G by E: interaction between genetics and environment.
+3. additive gene action: the total effect of a particular trait is the sum of the individual effects of __alleles__ at different loci. There are no interactions between alleles at different loci (no __epistasis__) or between multiple alleles at the same locus (no dominance).
+4. dominance: interactions between multiple alleles at the same locus (Aa and AA has the same trait, which is not additive).
+5. epistasis: interaction between different loci
+6. G by E: interaction between genetics and environment.
 
 Measurement of similarity/resemblance between quantitative traits: covariance(yi, yj)/variance(y)
 
