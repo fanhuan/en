@@ -14,12 +14,15 @@ We all know that coverage limits the kind of analysis we could carry out. But ho
 In [Hemstrom 2024](https://www.nature.com/articles/s41576-024-00738-6), they tried to define what is Low-coverage WGS. They really tried; they put it into the glossary part:
 
 ```
-Low-coverage whole-genome sequencing: Whole-genome sequencing (WGS)with small numbers of reads covering most genomic loci (low coverage);the number of reads constituting low coverage varies widely depending on the discipline, methodology and research question. Low-coverage WGS often requires genotype likelihood-based methods.
+Low-coverage whole-genome sequencing: 
+Whole-genome sequencing (WGS)with small numbers of reads covering most genomic loci (low coverage);
+the number of reads constituting low coverage varies widely depending on the discipline, 
+methodology and research question. Low-coverage WGS often requires genotype likelihood-based methods.
 ```
 
 OK. So what have we got from these sentences? That "the number constituting low coverage varies widely depending on the discipline, methodology and research question". This means no matter which discipline, which methodology and what kind of research questions you have, you still do not know what is considered low-coverage! But once you've decided that your coverage is indeed low for your perticular circumstance, you should use "genotype likelihood-based methods".
 
-Wow. Where do we start. Maybe let's understand more about this "genotype likelihood-based methods" and it might help us understand when we need to use it and back calculate what is considered low-coverage.
+Wow. Where do we start. Maybe let's understand more about this "genotype likelihood-based methods" and it might help us understand when we need to use it and back calculate what is considered low-coverage. (Later I realize this deserves [another post]())
 
 They cited an attack, sorry, no, a [comment](https://onlinelibrary.wiley.com/doi/10.1111/mec.17415) on a pretty famous paper on the inbreeding of [North American wolves](https://onlinelibrary.wiley.com/doi/10.1111/mec.17231). In the wolf paper, the sequencing coverage is 7X. Wow OK that actually sounds low. Imaging if you have a heterozygous site, you won't have five reads to support either, let alone the PCR duplication, which can be actually very high (5% to 50% in my current dataset). OK I would say anything below 10X is a no-brainer low. Later I also discovered this paper used RAD-seq. 7X coverage RAD-seq for 437 individuals (ok the sample size is pretty good). Man we need more funding on conservation.
 
@@ -43,7 +46,7 @@ OK, based on this one study, I will just say that 10X is the bare-minimum, and o
 
 Please take note on the '>' before 20X. Let me emphasize. This is not the mean, but the min! If you tell your sequence service provider that you want 20X, you might end up with lots of samples or loci under 20X, even under 10X. I took a brief look on the dataset that I am working on right now. There is indeed a strong correlation between the mean depth of the variants called, and the mean depth of the sequencing effort (r close to 0.9). However the ratio between the two is between 0.5 to 0.75. That is to say in the worse case, only half of the reads were useful in calling the variants. That translate to 27X(0.75) to 40X(0.5) of sequencing effort. This ratio is negatively correlated with the duplication rate (r close to -0.8). Maybe you can go for 30X, and resequence the ones with low variant coverage later.
 
-Good luch to everyone on securing a bigger funding!
+Good luck to everyone on securing a bigger funding!
 
 
 

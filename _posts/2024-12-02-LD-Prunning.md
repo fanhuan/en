@@ -6,11 +6,7 @@ tags: [stats]
 ---
 
 
-In the era of whole genome sequencing of thousands of individuals, we are facing the problem of not too few genetic variants, but too many. A major task is to filter those variants. Recently there is a very good review paper on this topic by [Hemstrom et al](https://www.nature.com/articles/s41576-024-00738-6). 
-
-The relationship between **recombination rate** and **linkage disequilibrium (LD)** is a key concept in population genetics. LD describes the non-random association of alleles at two or more loci, while recombination rate determines how frequently genetic material is exchanged between loci during meiosis. Here's how they are related:
-
----
+In the era of whole genome sequencing of thousands of individuals, we are facing the problem of not too few genetic variants, but too many. A major task is to filter those variants. Recently there is a very good review paper on this topic by [Hemstrom et al](https://www.nature.com/articles/s41576-024-00738-6). One of the way of filtering is based on **linkage disequilibrium (LD)**.
 
 ### **1. What is Linkage Disequilibrium (LD)?**
 - **LD** measures the statistical association between alleles at different loci.
@@ -19,42 +15,25 @@ The relationship between **recombination rate** and **linkage disequilibrium (LD
   - \( r^2 \): Measures the correlation between alleles at two loci, ranging from 0 (no LD) to 1 (complete LD).
   - \( D \): Measures the deviation of observed haplotype frequencies from expected under linkage equilibrium.
 
+### **2. Real-World Implications**
+1. **Mapping Genes**:
+   - LD is used in genome-wide association studies (GWAS) to link genetic markers to traits.
+   - High LD regions may indicate physical proximity between a marker and a causal variant.
+
+2. **Population Genomics**:
+   - LD patterns provide insights into recombination landscapes, population structure, and demographic history.
+
+3. **Selective Sweeps**:
+   - Strong positive selection can maintain high LD around a beneficial allele, even in regions with moderate recombination rates.
+
+Why do we want/need to ca
+
+The relationship between **recombination rate** and **linkage disequilibrium (LD)** is a key concept in population genetics. LD describes the non-random association of alleles at two or more loci, while recombination rate determines how frequently genetic material is exchanged between loci during meiosis. Here's how they are related:
+
 ---
 
-### **2. How Does Recombination Affect LD?**
-Recombination reduces LD by reshuffling alleles at different loci during meiosis. The relationship between recombination rate and LD can be summarized as:
 
-1. **High Recombination Rate**:
-   - Loci with high recombination rates tend to have **low LD** because frequent recombination breaks the association between alleles.
-   - Alleles at these loci assort more independently, leading to linkage equilibrium.
 
-2. **Low Recombination Rate**:
-   - Loci with low recombination rates tend to have **high LD** because recombination events are rare, preserving the non-random association of alleles.
-   - This is common for loci that are physically close on the same chromosome.
-
-3. **Recombination Hotspots**:
-   - Regions of the genome with high recombination activity can lead to sharp decreases in LD between loci on either side of the hotspot, even if they are physically close.
-
----
-
-### **3. Factors Influencing the Relationship Between Recombination and LD**
-While recombination plays a central role in shaping LD, other factors also affect this relationship:
-
-1. **Genetic Distance**:
-   - Loci that are closer together on a chromosome typically have lower recombination rates and higher LD.
-   - Loci further apart are more likely to recombine, resulting in lower LD.
-
-2. **Population Size**:
-   - Smaller populations tend to have higher LD because fewer recombination events occur across generations.
-
-3. **Mutation Rate**:
-   - Higher mutation rates introduce new alleles that can increase or decrease LD.
-
-4. **Selection**:
-   - Natural selection can maintain LD by favoring specific allele combinations (e.g., epistatic selection or selective sweeps).
-
-5. **Population History**:
-   - Bottlenecks, founder effects, and admixture events can lead to elevated LD in regions with low recombination rates.
 
 ---
 
@@ -74,16 +53,7 @@ This shows that:
 
 ---
 
-### **5. Real-World Implications**
-1. **Mapping Genes**:
-   - LD is used in genome-wide association studies (GWAS) to link genetic markers to traits.
-   - High LD regions may indicate physical proximity between a marker and a causal variant.
 
-2. **Population Genomics**:
-   - LD patterns provide insights into recombination landscapes, population structure, and demographic history.
-
-3. **Selective Sweeps**:
-   - Strong positive selection can maintain high LD around a beneficial allele, even in regions with moderate recombination rates.
 
 ---
 
