@@ -8,7 +8,8 @@ tags: [bioinformatics]
 While working with a vcf file, I noticed that one of the variant looked like this:
 
 ID 			    REF 		ALT
-chr1_254_A_T	<TABLE>T</TABLE> A
+
+chr1_254_A_T	T           A
 
 I was pretty confused. The ID suggested that A is the REF call and T is the Alternative. However the REF and ALT columns suggest the opposite. I was immediate alarmed since this could have cause problematic genotype calls where 0/0 and 1/1 are switched.
 
