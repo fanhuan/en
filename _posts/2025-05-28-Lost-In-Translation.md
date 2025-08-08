@@ -17,7 +17,7 @@ How could this be? I checked my original vcf file with which the current one is 
 
 Looking through my notes, I realized that I have converted my vcf to plink format, did some prunning there, and then converted the plink files back to vcf. Could this be the problem?
 
-The variant information is stored in the .bim file, and here is its [definition](https://www.cog-genomics.org/plink/1.9/formats#bim) 
+The variant information is stored in the .bim file, and here is its [definition](https://www.cog-genomics.org/plink/1.9/formats#bim): 
 
 ```
 .bim (PLINK extended MAP file)
@@ -33,7 +33,7 @@ Allele 1 (corresponding to clear bits in .bed; usually minor)
 Allele 2 (corresponding to set bits in .bed; usually major)
 ```
 
-As you can see, column 5 is the minor allele and column 6 is the major. This means we have lost which one is REF and which one is ALT. When you use `plink --recode vcf` to convert your .bim back to vcf, it will just assume that the major is REF, which is not always true. 
+As you can see, column 5 is the minor allele and column 6 is the major. This means we have lost the info on which one is REF and which one is ALT. When you use `plink --recode vcf` to convert your .bim back to vcf, it will just assume that the major is REF, which is not always true. 
 
 So what can you do? When converting your vcf to the plink format via `plint --vcf input.vcf --make-bed`, make sure to add either `--keep-allele-order` or `--real-ref-alleles`. Then the .bim file will be correct and when you convert it back to vcf later, there should be any problem. It is said that from plink 2.0 does not have this problem and will always respect the original REF/ALT order.
 
