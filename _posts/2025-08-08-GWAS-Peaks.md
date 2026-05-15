@@ -7,7 +7,7 @@ tags: [bioinformatics]
 
 When we do a manhattan plot for GWAS results, we are expecting to see sharp peaks, the sharper the better. But how about those isolated points with very low p-values, even after adjustment/punishment? Why are they less trustworthy? It is something that I know for a fact, but always having problem explaining to people who do not do GWAS. Today I'd like to solve this problem once and for all (wow ambitious)!
 
-At the heart of the problem is something called Linkage Disequilibrium (LD). This word has been the center of my universe in the recent couple of years. Everything dated back in 2010 in Okinawa; LD and coalescent is the center of every theory and every lecture, together with all these selections. 
+At the heart of the problem is something called __Linkage Disequilibrium (LD)__. This word has been the center of my universe in the recent couple of years. Everything dated back in 2010 in Okinawa; LD and coalescent is the center of every theory and every lecture, together with all these selections. 
 
 **Linkage Disequilibrium and Signal Coherence**
 

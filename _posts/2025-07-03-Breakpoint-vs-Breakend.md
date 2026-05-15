@@ -7,12 +7,6 @@ tags: [bioinformatics]
 
 Have been working on structual variations recently and came across some new concepts. 
 
-
-
-
-
-
-
 Before that some brief recap on the __Alternative allele field format__ (section 1.2.5). If the ALT column starts with left angle bracket (<), it suggests an IMPRECISE structual variant. Being imprecise means that the values in the INFO column (END, SVLEN etc.) is estimated to the best of the mapping info.  
 
 
