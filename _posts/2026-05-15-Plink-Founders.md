@@ -38,33 +38,50 @@ Basically any analysis. You need to be very careful about whether you want to ju
 
 ## 4. How did I discover this silent scary behavior?
 
-Like I said in the beginning, after adding all those PID and MID, there are very few founders left in my dataset, and I noticed that a lot more SNPs were filtered out under the same `--maf`. Also, PCA failed:
+1. Like I said in the beginning, after adding all those PID and MID, there are very few founders left in my dataset, and I noticed that a lot more SNPs were filtered out under the same `--maf`. 
 
-- **PLINK 1.9 `--pca`**: silent failure with cryptic GRM error ("Failed to extract eigenvector(s) from GRM")
+2. Then I realized that it also affects the LD prunning because under the same parameters (`--indep-pairwise 500 50 0.8 `), higher percentage of SNPs were found in LD/heavier prunning. 
+
+3. Eventually, PCA failed:
+
+- **PLINK 1.9 `--pca`**: silent failure with cryptic GRM error ("Failed to extract eigenvector(s) from GRM"), probably a singularity problem.
 - **PLINK 2 `--pca approx`**: explicit error ("less than 50 founders available to impute allele frequencies")
 
-Both errors have the same root cause: the GRM and allele frequency estimation are operating on fewer than 50 individuals for a dataset with thousands of samples. Then I realized that it also affects the LD prunning. 
+Both errors have the same root cause: the GRM and allele frequency estimation are operating on fewer than 50 individuals for a dataset with thousands of samples. 
 
-The same dataset also revealed a cascade of problems with LD pruning (`--indep-pairwise`), which is a prerequisite for PCA:
+## 5. Solutions and tradeoffs
 
-**Attempt 1 — default (27 founders):** retained only ~4.5% of variants vs ~12.4% for a comparable dataset with 339 founders. Noisy r² from small N causes spurious high-LD calls and over-pruning.
+**`--nonfounders`**: Usually this is an easy problem to fix by turning on this option and use all individuals in the dataset. This indeed retained slightly more SNPs (less than 10%) using all thousands of individuals, however still significantly less than the previous batch with only hundreds of individuals. 
 
-**Attempt 2 — `--nonfounders` (all 1996 individuals):** retained even fewer variants (~4.2%). Fix: relatedness inflates r² — full siblings and clones share long IBD haplotypes, making unlinked variants appear correlated within the pruning window.
 
-**Attempt 3 — `--rel-cutoff 0.125` to get unrelated subset first:** 1982 of 1996 individuals excluded, leaving 14 — worse than the original 27 founders. Fix: in a pedigree/breeding dataset, 2nd-degree relatedness is ubiquitous; a 0.125 cutoff removes almost everyone.
+- **`--freq` + `--read-freq`**: pre-compute frequencies from a representative subset, then feed them in — most principled for mixed datasets. Four-step workflow:
+  1. Pre-filter without `--maf` (apply `--geno` and `--mind` only)
+  2. Define a representative subset: include all true founders (PID=0, MID=0) plus **one individual per unique (PID, MID) pair** among non-founders. This ensures every independent lineage contributes exactly once — full siblings collapse to one representative, but half-siblings (who share only one parent and thus have *different* (PID, MID) combinations) each get their own representative.
+  3. Compute frequencies from that subset: `plink --bfile ... --keep <subset> --freq --nonfounders --out ...` — **`--nonfounders` is required here** because the subset includes non-founders (e.g., the half-sib representatives); without it PLINK falls back to the 27 true founders.
+  4. Apply MAF filter using the pre-computed frequencies: `plink --bfile ... --read-freq <freq_file> --maf 0.005 --make-bed --out ...`
 
-**Attempt 4 — `--rel-cutoff 0.25` (remove only 1st-degree + duplicates):** 489 individuals remaining — workable. But running `--indep-pairwise` on this subset failed with "less than two founders" because all 489 had parents listed in the `.fam` file that were no longer in the dataset.
+- **Remove relatives first for LD pruning**: use `--rel-cutoff` (can try third degree: 0.125 or second degree: 0.25) + `--make-founders` (required when parents are absent from the kept subset) + `--indep-pairwise`; apply the resulting prune list to the full dataset. For highly structured multi-population datasets, population structure will still inflate LD — per-population pruning followed by taking the union of kept variants is the most principled approach.
+
+  **A note on consistency between MAF and LD representative selection:** It is natural — and correct — to use different criteria at the two stages. For MAF estimation, the pedigree-based approach (one per unique PID/MID pair) is optimal because it uses known family structure to ensure independent lineage representation; half-siblings are included because their distinct (PID, MID) pairs represent genuinely different crosses. For LD estimation, a kinship cutoff (e.g., 0.125) uses empirical relatedness to prevent shared haplotype blocks from inflating apparent LD; half-siblings (IBD ≈ 0.25) are excluded by this threshold. The LD stage being *stricter* about relatedness than the MAF stage is the safe direction and is not a methodological inconsistency.
+- **`--bad-freqs`**: override (not recommended — hides the problem)
+
+
+**Attempt 1 — default (a couple dozens of founders):** retained only ~4.5% of variants vs ~12.4% for a previous version where we assigned hundreds of founders. Noisy r² from small N causes spurious high-LD calls and over-pruning.
+
+**Attempt 2 — `--nonfounders` (all individuals in thousands):** retained even fewer variants (~4.2%). This is counterintuitive — more individuals, yet worse results. The explanation requires understanding two distinct sources of r² inflation:
+
+- **Attempt 1** suffers from **small-N noise**: with only ~27 individuals, r² estimates are imprecise and systematically upward-biased (r² is bounded at 0, so random errors can only push it higher, never lower). Some truly unlinked variants get flagged as in LD by chance.
+
+- **Attempt 2** suffers from **kinship-induced pseudo-LD**: related individuals share long IBD haplotype blocks. Two variants sitting on the same shared haplotype will co-occur systematically across all members of a family — not because of actual LD in the population, but because of shared ancestry. Within a pruning window, PLINK cannot distinguish this from real LD and prunes accordingly. This is especially bad when you have a lot of related samples in your dataset.
+
+In my case, the kinship inflation turns out to be larger than the small-N noise inflation, so going from a couple of dozens of founders to thousands of related individuals makes things worse. Therefore we need to remove relatives first — you need a dataset where r² reflects actual population LD, not shared ancestry.
+
+At first I tried to get a unrelated subset using `--rel-cutoff 0.125` , but again only a couple of dozens of individuals are left. leaving 14 — worse than the original 27 founders. This is because 2nd-degree relatedness is pretty common in my dataset. Then I tried a lower cut off `--rel-cutoff 0.25` (remove only 1st-degree + duplicates), now we have a few hundreds remaining. You then need to make all of them founders (`--make-founders`)
 
 **Attempt 5 — add `--make-founders`:** promotes all individuals with absent parents to founder status. This is necessary whenever you use `--keep` to subset a pedigree dataset. Still retained fewer variants than expected (~3.1%), because population structure (many divergent populations) inflates within-window r² regardless of relatedness.
 
 **Validation:** despite all this, PCA eigenvectors computed before and after LD pruning showed >0.99 correlation — confirming that for PCA, the exact pruning strategy matters little in practice.
 
-## 5. Solutions and tradeoffs
-
-- **`--nonfounders`**: include all individuals — appropriate when you want population-level statistics despite pedigree structure
-- **`--freq` + `--read-freq`**: pre-compute frequencies from a reference panel or a manually curated unrelated subset, then feed them in — most principled for mixed datasets
-- **Remove relatives first for LD pruning**: use `--rel-cutoff` (can try third degree:0.125 or second degree: 0.25) + `--make-founders` (required when parents are absent from the kept subset) + `--indep-pairwise`; apply the resulting prune list to the full dataset. For highly structured multi-population datasets, population structure will still inflate LD — per-population pruning followed by taking the union of kept variants is the most principled approach.
-- **`--bad-freqs`**: override (not recommended — hides the problem)
 
 ## 6. Key takeaway
 
