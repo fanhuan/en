@@ -19,3 +19,7 @@ I can see two senarios.
 
 So one thing worth pointing out is that the fine mapping will be carried out on the full dataset.
 
+# Tools to use
+
+Currently I am using “Sum of Single Effects” (SuSiE). It's R realization is called [susieR](https://stephenslab.github.io/susieR/). The original model is described in [Wang et al. 2020](https://academic.oup.com/jrsssb/article/82/5/1273/7056114). This year, a newer version called [MultiSuSiE](https://www.nature.com/articles/s41588-025-02450-5) where multi-ancestry is accomodated was publised. 
+
