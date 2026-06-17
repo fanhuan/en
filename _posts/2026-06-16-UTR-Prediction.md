@@ -16,7 +16,7 @@ ANN=G|missense_variant|MODERATE|START_CODON_4_2844041_2844043|g17705|transcript|
 We can see that is is very long. There are multiple transcripts that it is involved, seperated by comma (,). The format for each transcript is:
 
 | # | Field | Meaning | Example |
-|---|---|---|---|
+|:---:|:---:|:---:|:---:|
 | 1 | Allele | the ALT allele being annotated | G |
 | 2 | Annotation | effect, as a Sequence Ontology term | missense_variant |
 | 3 | Impact | HIGH / MODERATE / LOW / MODIFIER | MODERATE |
