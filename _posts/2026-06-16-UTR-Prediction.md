@@ -15,24 +15,24 @@ ANN=G|missense_variant|MODERATE|START_CODON_4_2844041_2844043|g17705|transcript|
 
 We can see that is is very long. There are multiple transcripts that it is involved, seperated by comma (,). The format for each transcript is:
 
-| # | Field | Meaning | Example
-|---|---|---|
-| 1 | Allele | the ALT allele being annotated (G) | G
-| 2 | Annotation | effect, as a Sequence Ontology term | missense_variant
-| 3 | Impact | HIGH / MODERATE / LOW / MODIFIER | MODERATE
-| 4 | Gene_Name | gene symbol | START_CODON_4_2844041_2844043
-| 5 | Gene_ID | gene identifier | g17705
-| 6 | Feature_Type | transcript, gene_variant, etc. | transcript
-| 7 | Feature_ID | transcript/feature identifier | g17705.t1
-| 8 | BioType | protein_coding, pseudogene, etc. | protein_coding
-| 9 | Rank/Total | exon (or intron) rank / total | 11/15
-| 10 | HGVS.c | nucleotide change (coding coords) | c.721A>G
-| 11 | HGVS.p | amino-acid change | p.His241Asp
-| 12 | cDNA_pos/len | position in cDNA / cDNA length | 1826/2931
-| 13 | CDS_pos/len | position in CDS / CDS length | 721/2562
-| 14 | AA_pos/len | residue position / protein length | 241/853
-| 15 | Distance | distance to feature (for intergenic) |
-| 16 | Errors/Warnings | annotation QC messages | WARNING_TRANSCRIPT_MULTIPLE_STOP_CODONS
+| # | Field | Meaning | Example |
+|---|---|---|---|
+| 1 | Allele | the ALT allele being annotated | G |
+| 2 | Annotation | effect, as a Sequence Ontology term | missense_variant |
+| 3 | Impact | HIGH / MODERATE / LOW / MODIFIER | MODERATE |
+| 4 | Gene_Name | gene symbol | START_CODON_4_2844041_2844043 |
+| 5 | Gene_ID | gene identifier | g17705 |
+| 6 | Feature_Type | transcript, gene_variant, etc. | transcript |
+| 7 | Feature_ID | transcript/feature identifier | g17705.t1 |
+| 8 | BioType | protein_coding, pseudogene, etc. | protein_coding |
+| 9 | Rank/Total | exon (or intron) rank / total | 11/15 |
+| 10 | HGVS.c | nucleotide change (coding coords) | c.721A>G |
+| 11 | HGVS.p | amino-acid change | p.His241Asp |
+| 12 | cDNA_pos/len | position in cDNA / cDNA length | 1826/2931 |
+| 13 | CDS_pos/len | position in CDS / CDS length | 721/2562 |
+| 14 | AA_pos/len | residue position / protein length | 241/853 |
+| 15 | Distance | distance to feature (for intergenic) | |
+| 16 | Errors/Warnings | annotation QC messages | WARNING_TRANSCRIPT_MULTIPLE_STOP_CODONS |
 
 chr4  stringtie2utr  five_prime_UTR  2863596  2863618  +  .  transcript_id "g17705.t1"; ...
 
