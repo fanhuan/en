@@ -5,22 +5,21 @@ categories: [notes]
 tags: [GWAS]
 ---
 
-Recently I starting doing family-based GWAS using [SNIPAR](https://github.com/AlexTISYoung/snipar). This means I need to know the relationship between the samples in my analysis. Previously I only have info on two families which takes the majority of the data that I am working on, and I just treated the rest as un-related. But I know that is not true. In order to increase the sample size, I used [KING](https://www.kingrelatedness.com/), a kinship inference tool to predict the possible relationships based on SNP data. Then I check with the breeders to see whether they agree with those relationships. So now in my dataset, a lot of individuals have derived hypothetical PID or MID (parental or maternal ID), just to suggest full or half sibling relationships.
+Recently I starting doing family-based GWAS using [SNIPAR](https://github.com/AlexTISYoung/snipar). This means I need to know the relationship between the samples in my analysis. Previously I only have info on two families which makes the majority of the data that I am working on, and I just treated the rest as un-related. But I know that is not true. In order to increase the sample size, I used [KING](https://www.kingrelatedness.com/), a kinship inference tool to predict the possible relationships based on SNP data. Then I check with the breeders to see whether they agree with those relationships. So now in my dataset, a lot of individuals have derived hypothetical PID or MID (parental or maternal ID), just to suggest their full or half sibling relationships.
 
 Then I just went ahead to do my usually data preparation using [PLINK](https://www.cog-genomics.org/plink/) until I realized some problem, and it centers around this concept called __founder__.
 
 ## 1. What is a "founder" in PLINK?
 
-- Anyone with `0 0` in columns 3–4 of the `.fam` file (no parents listed)
-- **Not** a biological concept — purely a pedigree bookkeeping artifact
-- Population datasets with no pedigree: everyone is a founder (fine)
-- Breeding/family datasets with pedigrees filled in: only the top generation are founders (can be very few)
+It is basically anyone with `0 0` in the PID (column 3) and MID (columns 4) of the `.fam` file. Meaning, we do not have information on who their parents are. Thus they are founders themselves. Since they might not be the actual founders from their population, therefore it is **Not** a biological concept but purely a pedigree bookkeeping artifact. If there is no pedigree info in the whole dataset, then everyone becomes a founder. In our family data where we have grandparents, F1 and F2, only the grandparents are founders. 
 
-## 2. Why PLINK cares: the statistical rationale
+## 2. Why founder matters
 
-This is all because by default, PLINK calculates allele frequencies based on __founders only__. Related individuals share alleles IBD — counting them equally inflates the effective sample size and biases allele frequency estimates. Using only founders approximates sampling independent chromosomes from the base population.
+By default, `PLINK` calculates allele frequencies based on __founders only__. Meaning, if we do a `--maf 0.05` filtering, say for variant chr1_10000_A_T, in the founders it is all A, but maybe there are a lot of copies of T in non_founders, this variant will still be considered not meeting the maf cutoff and filtered out. This makes sense when we do have the parents or grandparents in the dataset, since mendelianly they should have all the alleles of their offsprings. But in my dataset, due to the include of hypothetical PID and MID, it would be a huge lose if only "founders" are considered. Using only founders approximates sampling independent chromosomes from the base population.
 
-We talked about [base population](https://fanhuan.github.io/en/2025/02/19/Base-Population/) before. At that point, I thought it only affects certain plink functions such as `--maf` or `--hwe`. Not until today did I realized that by default, any feature of PLINK is based on the base population or the founders. OK so the first conclusion of today is, in PLINK, __founders are the base population__. 
+Beyond presence and absense of alleles, this is also related to how allele frequencies in this population should be calculated. Allele frequency estimation assumes you've drawn N independent chromosomes from the population. Since related individuals share alleles IBD, they are not independent observations. If you genotype a parent and then genotype their three children, you're partly re-counting the parent's alleles three more times — the children's genotypes are predictable from the parent's. The "effective sample size" is the count of independent draws, which is far smaller than the raw count. Using raw count makes you think your estimate is more precise than it is, and it lets a few large families dominate. This concept is realted to [base population](https://fanhuan.github.io/en/2025/02/19/Base-Population/) that we talked about before. So founders makes the base population.
+
+At that point, I thought it only affects certain plink functions such as `--maf` or `--hwe`. Not until today did I realized that by default, any feature of PLINK is based on the base population or the founders. OK so the first conclusion of today is, in PLINK, __founders are the base population__. 
 
 ## 3. Analyses silently affected by founder status
 
