@@ -82,6 +82,29 @@ At first I tried to get a unrelated subset using `--rel-cutoff 0.125` , but agai
 **Validation:** despite all this, PCA eigenvectors computed before and after LD pruning showed >0.99 correlation — confirming that for PCA, the exact pruning strategy matters little in practice.
 
 
+## 5.5 A second worry, a wrong turn, and what the lever actually is
+
+After all that founder agonizing, I hit a related worry. My dataset is dominated by two big populations (TS1 and TS3), with a bunch of smaller ones trailing behind. My fear: even with `--nonfounders` turned on, a global `--maf 0.005` is computed by pooling everyone together. So a variant that is **common inside a small population but rare across the whole pool** gets dropped — exactly the variants I thought I'd most want to keep.
+
+My first instinct was that `--maf` was the wrong tool and I should switch to a count threshold, `--mac`. The reasoning felt clean: what actually destabilizes an association test is the **minor allele *count*** — how many copies enter the regression — not the frequency, so filter on the thing you actually care about. I was fairly convinced. So I ran it.
+
+**It made almost no difference.** `--mac 20 --nonfounders` returned essentially the same variant set as `--maf 0.005 --nonfounders` (a hair *fewer*, in fact). And once I saw that, the reason was obvious and a little embarrassing: on a single pooled sample, a frequency *is* a count. With ~2000 samples, `--maf 0.005` means a minor allele count of about `0.005 × 2 × 2000 ≈ 20`. So `--maf 0.005` and `--mac 20` are the **same threshold written two different ways**. They can only diverge at the boundary, and on how each treats missingness (`--mac` is slightly stricter on high-missingness sites, which is why it kept a touch fewer). Switching frequency-for-count could never have fixed population imbalance — I'd been comparing a tool to itself.
+
+So what *is* the lever? It's the **denominator — who counts as the base population** — not the form of the threshold. That's the whole lesson of this post, and it's the one knob that actually moves variants in and out:
+
+- **founders only** (a couple dozen people): noisy estimate, over-removes — the broken case.
+- **all individuals** (`--nonfounders`, or equivalently `--mac` on everyone): the pooled frequency. Repairs the over-removal.
+- **one representative per independent lineage** (the `--read-freq` subset trick from section 5): weights each lineage once, so the pooled denominator no longer drowns out small populations — retains the most variants.
+
+That last one looks like the answer to my imbalance worry, and as an *estimator of allele frequency* it is the principled choice. But here's the catch I only saw after running everything: the extra variants the lineage-weighted set keeps are, by construction, the ones with very few actual copies in the full sample. They survive only because dividing by a small denominator inflates their frequency. For a **pooled** GWAS, those are exactly the underpowered variants — there genuinely aren't enough copies in the data I'm analyzing to test them stably.
+
+Which dissolves the original worry rather than solving it. In a pooled analysis, *a variant that is rare in the pool is untestable in the pool* — no matter how common it is inside some small population. That isn't a filtering bug to engineer around; it's a property of pooling. If those small-population variants are biologically interesting, the answer is a stratified or population-specific analysis (where you'd filter within that population), not a cleverer global filter.
+
+So my actual conclusion, after the wrong turn: for everything analyzed together in GCTA and SNIPAR, use all individuals as the base population and a stringency around `--maf 0.005` / `--mac 20` (they're the same thing — pick whichever you find clearer; `--mac` is marginally more honest about missingness). For SNIPAR's family-based tests, where the effective number of independent units is smaller than the raw N, leaning a bit more conservative (`--mac 30`) is reasonable. Reserve the lineage-weighted subset for when you want an unbiased frequency *estimate*, not for deciding which variants enter the test.
+
+And the meta-lesson: I almost shipped a fix to a problem the fix couldn't touch, because the reasoning sounded right. Running it was what corrected me.
+
+
 ## 6. Key takeaway
 
 Always check your founder count before running any frequency-dependent analysis:
