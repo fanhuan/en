@@ -17,14 +17,15 @@ The first one is empirical FDR vs. (1-PIP threshold). Ref 12 is [Weissbord 2020 
 
 The second one is empirical FDR vs (1 - mean PIP). Here 1 - mean(PIP) is known as the expected FDR. To understand why, we need to firstly understand PIP, or posterior inclusion probability.
 
-What is posterior inclusion probability?
+What is posterior inclusion probability? In the SuSiE paper, [Wang 2020 Journal of the Royal Statistical Society Series B: Statistical Methodology](https://doi.org/10.1111/rssb.12388), it is defined as (equation 2.3)
 
+$$\text{PIP}_j := \Pr(b_j \neq 0 \mid X, y)$$
 
+that is, the given the data (genotypes $X$ and phenotypes $y$.), what is probability that variable $j$ has a non-zero effect ($b_j \neq 0$). 
+
+Now, let's try to understand why 1-mean(PIP) is the expected FDR.
 
 As threshold of PIP(0.95) is almost always higher than mean(PIP), the first one is less tolerant of higher FDR (therefore a more conservative/lower upper bound).
 
 Interestingly, Ref 12 is received on 28 October 2019 and Accepted on 02 October 2020. It cited [SuSiE](https://doi.org/10.1111/rssb.12388), which is also published in 2020, but it was submitted on 01 December 2018, and only accepted on 01 May 2020, from [a different lab](https://stephenslab.uchicago.edu/).  
 
-
-Published
-16 November 2020
